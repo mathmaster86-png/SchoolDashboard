@@ -7,12 +7,12 @@
     <title id="pageTitle">성지여자고등학교 학년부 대시보드</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Hahmlet:wght@400;500;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Jua&family=Orbit&family=Sunflower:wght@500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <script src="./config.js"></script>
     <style>
         :root {
-            --app-font: 'Gowun Dodum', 'Pretendard', 'Malgun Gothic', sans-serif;
+            --app-font: 'Sunflower', 'Pretendard', 'Malgun Gothic', sans-serif;
         }
 
         /* ========================================= */
@@ -31,7 +31,7 @@
             --class-on-text: #000; --class-on-shadow: rgba(0, 210, 180, 0.5);
             --period-bg: rgba(209, 178, 128, 0.15); --period-border: rgba(209, 178, 128, 0.3);
             --modal-overlay: rgba(0,0,0,0.8); --modal-shadow: rgba(0,0,0,0.5); --btn-text: #000;
-            --cancel-btn-bg: #444; --cancel-btn-text: #fff; --color-scheme: dark;
+            --cancel-btn-bg: #444; --cancel-btn-text: #fff; --color-scheme: dark; --popup-bg: #262626;
             --group1-color: #90CAF9; --group2-color: var(--accent-sub); --group3-color: #CE93D8; --group4-color: #A5D6A7;
         }
 
@@ -51,7 +51,7 @@
             --class-on-text: #ffffff; --class-on-shadow: rgba(255, 143, 171, 0.6);
             --period-bg: #FFF6EE; --period-border: var(--accent-sub);
             --modal-overlay: rgba(0,0,0,0.5); --modal-shadow: rgba(255, 143, 171, 0.3); --btn-text: #ffffff;
-            --cancel-btn-bg: #F0E6E8; --cancel-btn-text: var(--text-main); --color-scheme: light;
+            --cancel-btn-bg: #F0E6E8; --cancel-btn-text: var(--text-main); --color-scheme: light; --popup-bg: #FFFFFF;
             --group1-color: #1976D2; --group2-color: #D86A2E; --group3-color: #8E24AA; --group4-color: #2E7D32;
         }
 
@@ -71,7 +71,7 @@
             --class-on-text: #ffffff; --class-on-shadow: rgba(14, 165, 233, 0.4);
             --period-bg: #FEF3C7; --period-border: var(--accent-sub);
             --modal-overlay: rgba(0,0,0,0.5); --modal-shadow: rgba(14, 165, 233, 0.2); --btn-text: #ffffff;
-            --cancel-btn-bg: #E2E8F0; --cancel-btn-text: var(--text-main); --color-scheme: light;
+            --cancel-btn-bg: #E2E8F0; --cancel-btn-text: var(--text-main); --color-scheme: light; --popup-bg: #FFFFFF;
             --group1-color: #0284C7; --group2-color: #D97706; --group3-color: #7C3AED; --group4-color: #16A34A;
         }
 
@@ -91,7 +91,7 @@
             --class-on-text: #202124; --class-on-shadow: rgba(138, 180, 248, 0.5);
             --period-bg: rgba(253, 226, 147, 0.1); --period-border: var(--accent-sub);
             --modal-overlay: rgba(0,0,0,0.7); --modal-shadow: rgba(0,0,0,0.5); --btn-text: #202124;
-            --cancel-btn-bg: #5F6368; --cancel-btn-text: var(--text-main); --color-scheme: dark;
+            --cancel-btn-bg: #5F6368; --cancel-btn-text: var(--text-main); --color-scheme: dark; --popup-bg: #303134;
             --group1-color: #8AB4F8; --group2-color: #FDE293; --group3-color: #D7AEFB; --group4-color: #81C995;
         }
 
@@ -111,7 +111,7 @@
             --class-on-text: #ffffff; --class-on-shadow: rgba(76, 175, 80, 0.4);
             --period-bg: #FFF3E0; --period-border: var(--accent-sub);
             --modal-overlay: rgba(0,0,0,0.5); --modal-shadow: rgba(76, 175, 80, 0.2); --btn-text: #ffffff;
-            --cancel-btn-bg: #E0EBE0; --cancel-btn-text: var(--text-main); --color-scheme: light;
+            --cancel-btn-bg: #E0EBE0; --cancel-btn-text: var(--text-main); --color-scheme: light; --popup-bg: #FFFFFF;
             --group1-color: #1976D2; --group2-color: #E67E22; --group3-color: #8E24AA; --group4-color: #2E7D32;
         }
 
@@ -261,9 +261,47 @@
         ::-webkit-scrollbar-thumb { background: var(--border-color-strong); border-radius: 10px; }
 
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--modal-overlay); z-index: 9999; justify-content: center; align-items: center; }
-        .modal-content { background: var(--card-bg); width: 460px; max-width: 92vw; padding: 24px; border-radius: 12px; border: 2px solid var(--accent-main); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 30px var(--modal-shadow); box-sizing: border-box; }
+        .modal-content { background: var(--card-bg); width: 480px; max-width: 92vw; padding: 24px; border-radius: 12px; border: 2px solid var(--accent-main); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 30px var(--modal-shadow); box-sizing: border-box; }
         .modal-content textarea { width: 100%; height: 140px; background: var(--input-bg); color: var(--text-main); padding: 12px; border-radius: 6px; border: 1px solid var(--input-border); font-size: 0.98rem; line-height: 1.5; resize: none; outline: none; box-sizing: border-box; }
         .modal-content textarea:focus { border-color: var(--accent-main); }
+
+        /* D-Day 아이콘 선택 버튼 & 팝업 */
+        .dday-name-group { display: flex; gap: 6px; flex-grow: 1; min-width: 0; }
+        .dday-icon-btn {
+            display: inline-flex; align-items: center; justify-content: center; gap: 4px;
+            background: var(--input-bg); color: var(--text-main); border: 1px solid var(--input-border);
+            border-radius: 6px; padding: 0 10px; min-width: 56px; font-size: 1.05rem;
+            cursor: pointer; transition: 0.2s; flex-shrink: 0;
+        }
+        .dday-icon-btn:hover { border-color: var(--accent-sub); background: var(--hover-bg); }
+        .dday-icon-btn.empty { font-size: 0.8rem; color: var(--text-sub); }
+
+        .icon-picker-modal {
+            display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.62);
+            z-index: 10001; justify-content: center; align-items: center; padding: 16px;
+        }
+        .icon-picker-modal.open { display: flex; }
+        .icon-picker-card {
+            background: var(--popup-bg); border: 2px solid var(--accent-sub); border-radius: 14px;
+            width: 420px; max-width: 95vw; max-height: 82vh; overflow-y: auto; padding: 18px;
+            box-shadow: 0 12px 32px rgba(0,0,0,0.5); box-sizing: border-box;
+        }
+        .icon-picker-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; gap: 8px; }
+        .icon-picker-header h3 { margin: 0; font-size: 1rem; color: var(--accent-sub); }
+        .icon-category-title { font-size: 0.78rem; font-weight: 700; color: var(--text-sub); margin: 10px 0 6px; }
+        .icon-grid { display: grid; grid-template-columns: repeat(8, 1fr); gap: 6px; }
+        .icon-choice {
+            background: var(--hover-bg); border: 1px solid var(--border-color); border-radius: 8px;
+            font-size: 1.22rem; padding: 7px 0; cursor: pointer; transition: 0.15s;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .icon-choice:hover { transform: scale(1.12); border-color: var(--accent-sub); background: var(--input-bg); }
+        .icon-custom-row { display: flex; gap: 8px; margin-top: 14px; padding-top: 12px; border-top: 1px dashed var(--border-color-strong); }
+        .icon-clear-btn {
+            background: var(--hover-bg); color: var(--text-sub); border: 1px solid var(--input-border);
+            border-radius: 6px; padding: 5px 10px; font-size: 0.8rem; font-weight: bold; cursor: pointer; transition: 0.2s;
+        }
+        .icon-clear-btn:hover { border-color: var(--accent-red); color: var(--accent-red); }
 
         input[type="text"]:not(.edit-input):not(.checklist-input), input[type="date"] { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--input-border); outline: none; }
         input[type="text"]:not(.edit-input):not(.checklist-input):focus, input[type="date"]:focus { border-color: var(--accent-main); }
@@ -275,7 +313,7 @@
         .badge-link { flex-shrink: 0; color: #4FC3F7; border: 1px solid rgba(79, 195, 247, 0.5); background: rgba(79, 195, 247, 0.15); border-radius: 5px; padding: 2px 6px; font-size: 0.74rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
         .badge-file { flex-shrink: 0; color: #81C784; border: 1px solid rgba(129, 199, 132, 0.5); background: rgba(129, 199, 132, 0.15); border-radius: 5px; padding: 2px 6px; font-size: 0.74rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
 
-        #toast { position: fixed; bottom: -60px; left: 50%; transform: translateX(-50%); background: var(--accent-main); color: var(--btn-text); padding: 12px 24px; border-radius: 30px; font-weight: bold; font-size: 0.92rem; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 10000; transition: bottom 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55); pointer-events: none; max-width: 85vw; text-align: center; }
+        #toast { position: fixed; bottom: -60px; left: 50%; transform: translateX(-50%); background: var(--accent-main); color: var(--btn-text); padding: 12px 24px; border-radius: 30px; font-weight: bold; font-size: 0.92rem; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 10002; transition: bottom 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55); pointer-events: none; max-width: 85vw; text-align: center; }
         #toast.show { bottom: 28px; }
         #toast.error { background: var(--accent-red); color: #fff; }
 
@@ -303,11 +341,12 @@
             .time-display { font-size: 2.7rem; margin: 8px 0; }
 
             .dday-edit-row { flex-wrap: wrap; }
-            .dday-edit-row > input { width: 100% !important; margin-bottom: 4px; box-sizing: border-box; }
+            .dday-edit-row > input, .dday-edit-row > .dday-name-group { width: 100% !important; margin-bottom: 4px; box-sizing: border-box; }
 
             .d-day-box { font-size: 0.94rem; padding: 12px; }
             .d-day-row { flex-direction: column; align-items: flex-start !important; gap: 6px; }
             .d-day-actions { margin-top: 4px; width: 100%; justify-content: flex-end; }
+            .icon-grid { grid-template-columns: repeat(6, 1fr); }
         }
     </style>
 </head>
@@ -315,6 +354,24 @@
     <div id="toast">알림 메시지</div>
 
     <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
+
+    <!-- D-Day 아이콘 선택 팝업 -->
+    <div id="ddayIconPickerModal" class="icon-picker-modal" onclick="if(event.target===this) closeDdayIconPicker()">
+        <div class="icon-picker-card">
+            <div class="icon-picker-header">
+                <h3>✨ D-Day 아이콘 선택</h3>
+                <div style="display:flex; gap:6px;">
+                    <button type="button" class="icon-clear-btn" onclick="selectDdayIcon('')">🚫 아이콘 없음</button>
+                    <button type="button" class="icon-clear-btn" onclick="closeDdayIconPicker()">닫기</button>
+                </div>
+            </div>
+            <div id="ddayIconPickerBody"></div>
+            <div class="icon-custom-row">
+                <input type="text" id="customDdayIconInput" placeholder="원하는 이모지 직접 입력 (예: 📌)" style="flex-grow:1; border-radius:6px; padding:8px 10px; font-size:0.88rem;" onkeydown="if(!event.isComposing && event.key==='Enter') applyCustomDdayIcon()">
+                <button type="button" onclick="applyCustomDdayIcon()" style="padding:7px 14px; background:var(--accent-sub); color:var(--btn-text); border:none; border-radius:6px; cursor:pointer; font-weight:bold; font-size:0.85rem; flex-shrink:0;">적용</button>
+            </div>
+        </div>
+    </div>
 
     <!-- 전달사항 수정 모달 -->
     <div id="editModal" class="modal-overlay" onclick="if(event.target===this) closeEditModal()">
@@ -344,8 +401,13 @@
                 </label>
             </h3>
             <div class="dday-edit-row" style="display:flex; gap:8px;">
-                <input type="text" id="modalDdayName" placeholder="일정명" style="flex-grow:1; border-radius:6px; padding:10px; font-size:0.9rem; outline:none;">
-                <input type="date" id="modalDdayDate" style="border-radius:6px; padding:10px; font-size:0.9rem; outline:none; text-align:center;">
+                <div class="dday-name-group">
+                    <button type="button" id="ddayIconBtn" class="dday-icon-btn" onclick="openDdayIconPicker()" title="클릭하여 아이콘 선택">
+                        <span id="ddayIconDisplay">📌</span><span style="font-size:0.65rem; color:var(--text-sub);">▾</span>
+                    </button>
+                    <input type="text" id="modalDdayName" placeholder="일정명" style="flex-grow:1; min-width:0; border-radius:6px; padding:10px; font-size:0.9rem; outline:none;">
+                </div>
+                <input type="date" id="modalDdayDate" style="border-radius:6px; padding:10px; font-size:0.9rem; outline:none; text-align:center; flex-shrink:0;">
             </div>
             <div class="dday-edit-row" style="display:flex; gap:8px; align-items:center;">
                 <input type="text" id="modalDdayLink" placeholder="공유 링크 (선택, 예: naver.com)" style="flex-grow:1; width:50%; border-radius:6px; padding:10px; font-size:0.9rem; outline:none; box-sizing:border-box;">
@@ -385,7 +447,6 @@
             </div>
             <div class="menu-divider"></div>
 
-            <!-- config 기반 동적 사이드바 렌더링 영역 -->
             <div id="sidebarLinks"></div>
         </aside>
 
@@ -482,7 +543,7 @@
 
     <script>
         // =========================================
-        // 0. 전역 상태 & 스토리지 키 & 폰트 프리셋
+        // 0. 전역 상태 & 스토리지 키 & 폰트/아이콘 프리셋
         // =========================================
         const STORAGE_KEYS = {
             THEME: 'sj_dashboard_theme',
@@ -495,11 +556,31 @@
         };
 
         const FONT_PRESETS = {
-            gowun: "'Gowun Dodum', 'Pretendard', 'Malgun Gothic', sans-serif",
+            sunflower: "'Sunflower', 'Pretendard', 'Malgun Gothic', sans-serif",
+            jua: "'Jua', 'Pretendard', 'Malgun Gothic', sans-serif",
             ibm: "'IBM Plex Sans KR', 'Pretendard', 'Malgun Gothic', sans-serif",
-            hahmlet: "'Hahmlet', 'Pretendard', 'Malgun Gothic', serif",
+            orbit: "'Orbit', 'Pretendard', 'Malgun Gothic', sans-serif",
             pretendard: "'Pretendard', 'Malgun Gothic', sans-serif"
         };
+
+        const DDAY_ICON_CATEGORIES = [
+            {
+                name: '📌 중요 · 마감 · 체크',
+                icons: ['📌', '❗', '🔥', '⭐', '⏰', '🚨', '✅', '🎯']
+            },
+            {
+                name: '📝 시험 · 평가 · 생기부 · 진학',
+                icons: ['📝', '💯', '✏️', '📊', '📋', '📑', '📚', '🎓']
+            },
+            {
+                name: '🏫 행사 · 회의 · 학사일정',
+                icons: ['🏫', '📢', '🗓️', '🧑‍🏫', '🎤', '🚌', '🏆', '🎉']
+            },
+            {
+                name: '💼 행정 · 공문 · 생활',
+                icons: ['💼', '📁', '📧', '💰', '🍽️', '🧹', '🌸', '☀️']
+            }
+        ];
 
         const API_URL = (window.DASHBOARD_ENV && window.DASHBOARD_ENV.APPS_SCRIPT_URL || '').trim();
         const IS_LOCAL_MODE = !API_URL;
@@ -509,6 +590,7 @@
         let ddayMap = new Map();
         let isPostingNotice = false;
         let isSavingEdit = false;
+        let selectedDdayIcon = '📌';
 
         // 급식 상태
         let mealData = { lunch: null, dinner: null, loaded: false, error: false };
@@ -567,9 +649,27 @@
             return `${String(dateObj.getMonth() + 1).padStart(2, '0')}-${String(dateObj.getDate()).padStart(2, '0')}`;
         }
 
+        function splitLeadingIcon(fullText) {
+            const str = String(fullText || '').trim();
+            const spaceIdx = str.indexOf(' ');
+            if (spaceIdx > 0 && spaceIdx <= 8) {
+                const first = str.slice(0, spaceIdx);
+                try {
+                    if (/\p{Extended_Pictographic}/u.test(first) && !/[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ]/.test(first)) {
+                        return { icon: first, name: str.slice(spaceIdx + 1).trim() };
+                    }
+                } catch (e) {
+                    if (!/[a-zA-Z0-9가-힣ㄱ-ㅎㅏ-ㅣ\-\[\]\(\)]/.test(first)) {
+                        return { icon: first, name: str.slice(spaceIdx + 1).trim() };
+                    }
+                }
+            }
+            return { icon: '', name: str };
+        }
+
         function mergeConfig(base, override) {
             const merged = JSON.parse(JSON.stringify(base || {}));
-            if (!merged.fontFamily) merged.fontFamily = 'gowun';
+            if (!merged.fontFamily || !FONT_PRESETS[merged.fontFamily]) merged.fontFamily = 'sunflower';
             if (!override || typeof override !== 'object') return merged;
             for (const key of Object.keys(override)) {
                 if (key === 'schedule' && override.schedule && typeof override.schedule === 'object') {
@@ -581,6 +681,7 @@
                     merged[key] = override[key];
                 }
             }
+            if (!FONT_PRESETS[merged.fontFamily]) merged.fontFamily = 'sunflower';
             return merged;
         }
 
@@ -645,7 +746,7 @@
         }
 
         function applyFont(fontKey) {
-            const stack = FONT_PRESETS[fontKey] || FONT_PRESETS.gowun;
+            const stack = FONT_PRESETS[fontKey] || FONT_PRESETS.sunflower;
             document.documentElement.style.setProperty('--app-font', stack);
         }
 
@@ -655,7 +756,7 @@
             const gradeLabel = appConfig.gradeName || '3학년부';
             const fullTitle = `${shortSchool} ${gradeLabel} 대시보드`;
 
-            applyFont(appConfig.fontFamily || 'gowun');
+            applyFont(appConfig.fontFamily || 'sunflower');
 
             document.title = fullTitle;
             document.getElementById('pageTitle').textContent = fullTitle;
@@ -1103,7 +1204,7 @@
             const list = safeJsonParse(localStorage.getItem(STORAGE_KEYS.LOCAL_DDAYS), null);
             if (Array.isArray(list)) return list;
             const seed = [
-                { ID: 'DEMO-D1', 일정명: '새 학기 학급 조직 및 시정표 점검', 날짜: getTodayString(), 외부링크: '', 파일링크: '', 반별체크: JSON.stringify(new Array(appConfig.classCount || 8).fill(0)), 보관여부: 'N' }
+                { ID: 'DEMO-D1', 일정명: '📌 새 학기 학급 조직 및 시정표 점검', 날짜: getTodayString(), 외부링크: '', 파일링크: '', 반별체크: JSON.stringify(new Array(appConfig.classCount || 8).fill(0)), 보관여부: 'N' }
             ];
             localStorage.setItem(STORAGE_KEYS.LOCAL_DDAYS, JSON.stringify(seed));
             return seed;
@@ -1294,8 +1395,63 @@
         }
 
         // =========================================
-        // 8. 주요 업무 D-Day (반별 체크 & 보관함)
+        // 8. D-Day 아이콘 선택기 & 주요 업무 D-Day
         // =========================================
+        function buildDdayIconPicker() {
+            const body = document.getElementById('ddayIconPickerBody');
+            body.innerHTML = '';
+            DDAY_ICON_CATEGORIES.forEach(cat => {
+                const title = document.createElement('div');
+                title.className = 'icon-category-title';
+                title.textContent = cat.name;
+                body.appendChild(title);
+
+                const grid = document.createElement('div');
+                grid.className = 'icon-grid';
+                cat.icons.forEach(emoji => {
+                    const btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'icon-choice';
+                    btn.textContent = emoji;
+                    btn.onclick = () => selectDdayIcon(emoji);
+                    grid.appendChild(btn);
+                });
+                body.appendChild(grid);
+            });
+        }
+
+        function updateDdayIconButton() {
+            const btn = document.getElementById('ddayIconBtn');
+            const disp = document.getElementById('ddayIconDisplay');
+            if (selectedDdayIcon) {
+                disp.textContent = selectedDdayIcon;
+                btn.classList.remove('empty');
+            } else {
+                disp.textContent = '없음';
+                btn.classList.add('empty');
+            }
+        }
+
+        function openDdayIconPicker() {
+            document.getElementById('customDdayIconInput').value = selectedDdayIcon || '';
+            document.getElementById('ddayIconPickerModal').classList.add('open');
+        }
+
+        function closeDdayIconPicker() {
+            document.getElementById('ddayIconPickerModal').classList.remove('open');
+        }
+
+        function selectDdayIcon(emoji) {
+            selectedDdayIcon = String(emoji || '').trim();
+            updateDdayIconButton();
+            closeDdayIconPicker();
+        }
+
+        function applyCustomDdayIcon() {
+            const val = document.getElementById('customDdayIconInput').value.trim();
+            selectDdayIcon(val);
+        }
+
         function filterDdays() {
             const query = document.getElementById('ddaySearch').value.toLowerCase();
             let archiveHasMatch = false;
@@ -1504,6 +1660,8 @@
                 titleSpan.textContent = '새로운 D-Day 추가';
                 btn.textContent = '추가하기';
                 currentDdayEditId = null;
+                selectedDdayIcon = '📌';
+                updateDdayIconButton();
                 document.getElementById('modalDdayName').value = '';
                 document.getElementById('modalDdayDate').value = getTodayString();
                 document.getElementById('modalDdayLink').value = '';
@@ -1516,7 +1674,10 @@
                 titleSpan.textContent = 'D-Day 수정';
                 btn.textContent = '저장하기';
                 currentDdayEditId = id;
-                document.getElementById('modalDdayName').value = item.name;
+                const parsed = splitLeadingIcon(item.name);
+                selectedDdayIcon = parsed.icon;
+                updateDdayIconButton();
+                document.getElementById('modalDdayName').value = parsed.name;
                 document.getElementById('modalDdayDate').value = item.date.slice(0, 10);
                 document.getElementById('modalDdayLink').value = item.link || '';
                 document.getElementById('modalDdayFile').value = '';
@@ -1528,12 +1689,13 @@
         }
 
         function closeDdayModal() {
+            closeDdayIconPicker();
             document.getElementById('ddayModal').style.display = 'none';
             currentDdayEditId = null;
         }
 
         function processDdaySave() {
-            const name = document.getElementById('modalDdayName').value.trim();
+            const rawName = document.getElementById('modalDdayName').value.trim();
             const date = document.getElementById('modalDdayDate').value;
             const rawLink = document.getElementById('modalDdayLink').value.trim();
             const link = rawLink ? normalizeUrl(rawLink) : '';
@@ -1542,8 +1704,10 @@
             const btn = document.getElementById('saveDdayBtn');
             const defaultLabel = ddayModalMode === 'add' ? '추가하기' : '저장하기';
 
-            if (!name || !date) { showToast('일정명과 날짜를 입력해주세요.', true); return; }
+            if (!rawName || !date) { showToast('일정명과 날짜를 입력해주세요.', true); return; }
             if (rawLink && !link) { showToast('올바른 링크 형식이 아닙니다.', true); return; }
+
+            const name = selectedDdayIcon ? `${selectedDdayIcon} ${rawName}` : rawName;
 
             if (IS_LOCAL_MODE) {
                 if (fileInput.files.length > 0) {
@@ -1656,6 +1820,7 @@
         // =========================================
         document.addEventListener('DOMContentLoaded', async () => {
             applyTheme(localStorage.getItem(STORAGE_KEYS.THEME) || 'dark');
+            buildDdayIconPicker();
 
             if (IS_LOCAL_MODE) {
                 document.getElementById('testModeBadge').classList.add('visible');
@@ -1673,6 +1838,10 @@
 
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
+                    if (document.getElementById('ddayIconPickerModal').classList.contains('open')) {
+                        closeDdayIconPicker();
+                        return;
+                    }
                     closeEditModal();
                     closeDdayModal();
                 }
