@@ -7,12 +7,36 @@
     <title id="pageTitle">성지여자고등학교 학년부 대시보드</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Jua&family=Orbit&family=Sunflower:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" />
+    <link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" />
     <script src="./config.js"></script>
     <style>
+        @font-face {
+            font-family: 'GmarketSans';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'GmarketSans';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'GmarketSans';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
         :root {
-            --app-font: 'Sunflower', 'Pretendard', 'Malgun Gothic', sans-serif;
+            --app-font: 'NanumSquareRound', 'Pretendard', 'Malgun Gothic', sans-serif;
         }
 
         /* ========================================= */
@@ -175,7 +199,7 @@
         .card-2 { grid-area: 2 / 2 / 3 / 3; }
 
         .date-display { font-size: 1.04rem; color: var(--accent-main); text-align: center; font-weight: bold; letter-spacing: 0.5px; }
-        .time-display { font-size: 3.1rem; font-weight: bold; text-align: center; color: var(--accent-sub); letter-spacing: 2px; margin: 4px 0; line-height: 1.08; font-variant-numeric: tabular-nums; }
+        .time-display { font-size: 3.05rem; font-weight: bold; text-align: center; color: var(--accent-sub); letter-spacing: 2px; margin: 4px 0; line-height: 1.08; font-variant-numeric: tabular-nums; }
         .weather-display { font-size: 0.9rem; text-align: center; color: var(--text-main); margin-bottom: 8px; font-weight: 500; }
 
         .lunch-box { background: var(--box-bg); border: 1px solid var(--border-color); padding: 10px 12px; border-radius: 10px; text-align: center; }
@@ -216,7 +240,7 @@
         .cl-btn:hover { opacity: 1; transform: scale(1.1); }
 
         /* ========================================= */
-        /* 📢 전달사항 & 🏫 D-Day */
+        /* 📢 전달사항 & 📅 D-Day */
         /* ========================================= */
         #noticeBoard { flex-grow: 1; overflow-y: auto; padding-right: 5px; min-height: 0; }
         .section-title { font-size: 0.9rem; font-weight: bold; color: var(--accent-sub); margin-bottom: 6px; margin-top: 12px; display: flex; align-items: center; gap: 5px; }
@@ -543,7 +567,7 @@
 
     <script>
         // =========================================
-        // 0. 전역 상태 & 스토리지 키 & 폰트/아이콘 프리셋
+        // 0. 전역 상태 & 스토리지 키 & 인기 폰트 5종
         // =========================================
         const STORAGE_KEYS = {
             THEME: 'sj_dashboard_theme',
@@ -555,11 +579,13 @@
             LOCAL_DDAYS: 'sj_local_ddays'
         };
 
+        const DEFAULT_FONT_KEY = 'nanumround';
+
         const FONT_PRESETS = {
-            sunflower: "'Sunflower', 'Pretendard', 'Malgun Gothic', sans-serif",
-            jua: "'Jua', 'Pretendard', 'Malgun Gothic', sans-serif",
+            nanumround: "'NanumSquareRound', 'Pretendard', 'Malgun Gothic', sans-serif",
+            gmarket: "'GmarketSans', 'Pretendard', 'Malgun Gothic', sans-serif",
+            spoqa: "'Spoqa Han Sans Neo', 'Pretendard', 'Malgun Gothic', sans-serif",
             ibm: "'IBM Plex Sans KR', 'Pretendard', 'Malgun Gothic', sans-serif",
-            orbit: "'Orbit', 'Pretendard', 'Malgun Gothic', sans-serif",
             pretendard: "'Pretendard', 'Malgun Gothic', sans-serif"
         };
 
@@ -669,7 +695,7 @@
 
         function mergeConfig(base, override) {
             const merged = JSON.parse(JSON.stringify(base || {}));
-            if (!merged.fontFamily || !FONT_PRESETS[merged.fontFamily]) merged.fontFamily = 'sunflower';
+            if (!merged.fontFamily || !FONT_PRESETS[merged.fontFamily]) merged.fontFamily = DEFAULT_FONT_KEY;
             if (!override || typeof override !== 'object') return merged;
             for (const key of Object.keys(override)) {
                 if (key === 'schedule' && override.schedule && typeof override.schedule === 'object') {
@@ -681,7 +707,7 @@
                     merged[key] = override[key];
                 }
             }
-            if (!FONT_PRESETS[merged.fontFamily]) merged.fontFamily = 'sunflower';
+            if (!FONT_PRESETS[merged.fontFamily]) merged.fontFamily = DEFAULT_FONT_KEY;
             return merged;
         }
 
@@ -746,7 +772,7 @@
         }
 
         function applyFont(fontKey) {
-            const stack = FONT_PRESETS[fontKey] || FONT_PRESETS.sunflower;
+            const stack = FONT_PRESETS[fontKey] || FONT_PRESETS[DEFAULT_FONT_KEY];
             document.documentElement.style.setProperty('--app-font', stack);
         }
 
@@ -756,7 +782,7 @@
             const gradeLabel = appConfig.gradeName || '3학년부';
             const fullTitle = `${shortSchool} ${gradeLabel} 대시보드`;
 
-            applyFont(appConfig.fontFamily || 'sunflower');
+            applyFont(appConfig.fontFamily || DEFAULT_FONT_KEY);
 
             document.title = fullTitle;
             document.getElementById('pageTitle').textContent = fullTitle;

@@ -7,18 +7,44 @@
     <title>성지여고 대시보드 관리자 설정</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&family=Jua&family=Orbit&family=Sunflower:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <link rel="stylesheet" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-round.css" />
+    <link rel="stylesheet" href="https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css" />
     <script src="./config.js"></script>
     <style>
-        :root {
-            --app-font: 'Sunflower', 'Pretendard', 'Malgun Gothic', sans-serif;
+        @font-face {
+            font-family: 'GmarketSans';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
         }
+        @font-face {
+            font-family: 'GmarketSans';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        @font-face {
+            font-family: 'GmarketSans';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+            font-weight: 700;
+            font-style: normal;
+            font-display: swap;
+        }
+
+        :root {
+            --app-font: 'NanumSquareRound', 'Pretendard', 'Malgun Gothic', sans-serif;
+        }
+
         :root[data-theme="dark"] {
             --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #ffffff; --text-sub: #b3b3b3;
             --accent-main: #00D2B4; --accent-sub: #D1B280; --accent-red: #FF6B6B;
             --input-bg: rgba(0,0,0,0.3); --input-border: rgba(255,255,255,0.14);
             --border-color: rgba(255,255,255,0.08); --hover-bg: rgba(255,255,255,0.06);
+            --selected-bg: rgba(0, 210, 180, 0.12);
             --btn-text: #000; --card-shadow: rgba(0,0,0,0.35);
             --popup-bg: #262626;
         }
@@ -26,28 +52,28 @@
             --bg-color: #FFF0F5; --card-bg: #FFFFFF; --text-main: #4A3B3C; --text-sub: #8B7D7E;
             --accent-main: #FF8FAB; --accent-sub: #E07A3F; --accent-red: #FF5252;
             --input-bg: #FFF9FA; --input-border: #FFD1DC; --border-color: #FFD1DC;
-            --hover-bg: #FFE4EB; --btn-text: #fff; --card-shadow: rgba(255,182,193,0.25);
+            --hover-bg: #FFE4EB; --selected-bg: #FFF0F5; --btn-text: #fff; --card-shadow: rgba(255,182,193,0.25);
             --popup-bg: #FFFFFF;
         }
         :root[data-theme="sky"] {
             --bg-color: #F0F8FF; --card-bg: #FFFFFF; --text-main: #1E293B; --text-sub: #64748B;
             --accent-main: #0EA5E9; --accent-sub: #D97706; --accent-red: #EF4444;
             --input-bg: #F8FAFC; --input-border: #CBD5E1; --border-color: #E2E8F0;
-            --hover-bg: #F1F5F9; --btn-text: #fff; --card-shadow: rgba(14,165,233,0.12);
+            --hover-bg: #F1F5F9; --selected-bg: #E0F2FE; --btn-text: #fff; --card-shadow: rgba(14,165,233,0.12);
             --popup-bg: #FFFFFF;
         }
         :root[data-theme="modern"] {
             --bg-color: #202124; --card-bg: #2D2E31; --text-main: #E8EAED; --text-sub: #9AA0A6;
             --accent-main: #8AB4F8; --accent-sub: #FDE293; --accent-red: #F28B82;
             --input-bg: #202124; --input-border: #5F6368; --border-color: #3C4043;
-            --hover-bg: #3C4043; --btn-text: #202124; --card-shadow: rgba(0,0,0,0.4);
+            --hover-bg: #3C4043; --selected-bg: rgba(138, 180, 248, 0.14); --btn-text: #202124; --card-shadow: rgba(0,0,0,0.4);
             --popup-bg: #303134;
         }
         :root[data-theme="forest"] {
             --bg-color: #F4F7F4; --card-bg: #FFFFFF; --text-main: #2C3E2D; --text-sub: #7A8B7B;
             --accent-main: #4CAF50; --accent-sub: #E67E22; --accent-red: #E53935;
             --input-bg: #F9FCF9; --input-border: #C8E6C9; --border-color: #E8EFE8;
-            --hover-bg: #E8F5E9; --btn-text: #fff; --card-shadow: rgba(76,175,80,0.15);
+            --hover-bg: #E8F5E9; --selected-bg: #E8F5E9; --btn-text: #fff; --card-shadow: rgba(76,175,80,0.15);
             --popup-bg: #FFFFFF;
         }
 
@@ -97,9 +123,24 @@
         }
         input:focus, select:focus, textarea:focus { border-color: var(--accent-main); }
 
-        .font-preview-box { margin-top: 6px; padding: 12px 14px; border-radius: 10px; background: var(--hover-bg); border: 1px dashed var(--input-border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
-        .font-preview-text { font-size: 1.02rem; color: var(--text-main); }
-        .font-preview-time { font-size: 1.25rem; font-weight: bold; color: var(--accent-sub); font-variant-numeric: tabular-nums; }
+        /* 5종 폰트 한눈에 비교 카드 */
+        .font-card-list { display: flex; flex-direction: column; gap: 10px; margin-top: 4px; }
+        .font-card {
+            display: flex; flex-direction: column; gap: 6px; text-align: left; width: 100%;
+            background: var(--hover-bg); border: 2px solid var(--border-color); border-radius: 12px;
+            padding: 13px 16px; cursor: pointer; transition: 0.18s; color: var(--text-main);
+        }
+        .font-card:hover { border-color: var(--accent-main); transform: translateY(-1px); }
+        .font-card.selected { border-color: var(--accent-main); background: var(--selected-bg); }
+        .font-card-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .font-card-meta { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .font-card-name { font-size: 0.95rem; font-weight: 700; color: var(--accent-main); }
+        .font-card-desc { font-size: 0.8rem; color: var(--text-sub); }
+        .font-card-check { font-size: 0.76rem; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--accent-main); color: var(--btn-text); display: none; }
+        .font-card.selected .font-card-check { display: inline-block; }
+        .font-card-sample { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; padding-top: 4px; border-top: 1px dashed var(--border-color); }
+        .font-card-sample-text { font-size: 1rem; color: var(--text-main); }
+        .font-card-sample-num { font-size: 1.15rem; font-weight: 700; color: var(--accent-sub); font-variant-numeric: tabular-nums; }
 
         .row-list { display: flex; flex-direction: column; gap: 8px; }
         .item-row { display: grid; gap: 8px; align-items: center; background: var(--hover-bg); padding: 10px; border-radius: 10px; border: 1px solid var(--border-color); }
@@ -206,8 +247,8 @@
 
             <!-- 탭 1: 기본 정보 · 폰트 -->
             <section id="tab-basic" class="panel active">
-                <h2>🏫 학교 · 학년 기본 정보 & 폰트</h2>
-                <p class="panel-desc">3월 학년 배정과 학급 수가 확정되면 여기에서 바로 수정하고 저장하세요. 저장 즉시 대시보드 제목, 폰트, 반별 체크 버튼 개수가 반영됩니다.</p>
+                <h2>🏫 학교 · 학년 기본 정보 & 인기 폰트 5종</h2>
+                <p class="panel-desc">3월 학년 배정과 학급 수가 확정되면 여기에서 바로 수정하고 저장하세요. 아래 5개 폰트 카드를 직접 눈으로 비교하고 클릭해 선택할 수 있습니다.</p>
                 <div class="form-grid">
                     <div class="form-group">
                         <label for="cfgSchoolName">학교명 (메인 카드 제목 및 나이스 급식 조회용)</label>
@@ -217,20 +258,12 @@
                         <label for="cfgGradeName">학년부 명칭</label>
                         <input type="text" id="cfgGradeName" placeholder="예: 3학년부, 1학년부">
                     </div>
+
                     <div class="form-group full">
-                        <label for="cfgFontFamily">대시보드 폰트 선택 (선택 즉시 아래 미리보기 반영)</label>
-                        <select id="cfgFontFamily" onchange="previewSelectedFont(this.value)">
-                            <option value="sunflower">해바라기체 (Sunflower) — 산뜻하고 둥글어 예쁜 모던체 [추천]</option>
-                            <option value="jua">배민 주아체 (Jua) — 동글동글 귀엽고 친근한 스타일</option>
-                            <option value="ibm">IBM Plex Sans KR — 깔끔하고 세련된 현대적 고딕</option>
-                            <option value="orbit">오르빗 (Orbit) — 슬림하고 트렌디한 감각적 고딕</option>
-                            <option value="pretendard">프리텐다드 (Pretendard) — 기본 표준 고딕</option>
-                        </select>
-                        <div class="font-preview-box" id="fontPreviewBox">
-                            <span class="font-preview-text">🏫 성지여자고등학교 3학년부 전달사항 · 📌 수행평가 마감</span>
-                            <span class="font-preview-time">08:30:00 · D-14</span>
-                        </div>
+                        <label>대시보드 폰트 선택 (클릭하면 실제 폰트로 즉시 미리보기 됩니다)</label>
+                        <div id="fontCardList" class="font-card-list"></div>
                     </div>
+
                     <div class="form-group">
                         <label for="cfgClassCount">학급 수 (반별 체크 버튼 개수, 1~20)</label>
                         <input type="number" id="cfgClassCount" min="1" max="20" value="8">
@@ -369,13 +402,42 @@
             SESSION_PIN: 'sj_admin_verified_pin'
         };
 
-        const FONT_PRESETS = {
-            sunflower: "'Sunflower', 'Pretendard', 'Malgun Gothic', sans-serif",
-            jua: "'Jua', 'Pretendard', 'Malgun Gothic', sans-serif",
-            ibm: "'IBM Plex Sans KR', 'Pretendard', 'Malgun Gothic', sans-serif",
-            orbit: "'Orbit', 'Pretendard', 'Malgun Gothic', sans-serif",
-            pretendard: "'Pretendard', 'Malgun Gothic', sans-serif"
-        };
+        const DEFAULT_FONT_KEY = 'nanumround';
+
+        const FONT_OPTIONS = [
+            {
+                key: 'nanumround',
+                name: '나눔스퀘어라운드 (NanumSquareRound)',
+                desc: '끝이 살짝 둥글어 부드럽고 예쁘면서 가독성 최고 · 학교/교육 인기 1위 [추천]',
+                stack: "'NanumSquareRound', 'Pretendard', 'Malgun Gothic', sans-serif"
+            },
+            {
+                key: 'gmarket',
+                name: '지마켓 산스 (Gmarket Sans)',
+                desc: '산뜻하고 세련된 기하학적 느낌 · 대시보드/발표자료 국민 인기 폰트',
+                stack: "'GmarketSans', 'Pretendard', 'Malgun Gothic', sans-serif"
+            },
+            {
+                key: 'spoqa',
+                name: '스포카 한 산스 네오 (Spoqa Han Sans Neo)',
+                desc: '깔끔하고 정돈된 UI 전용 폰트 · 시계/D-Day 숫자 가독성이 매우 뛰어남',
+                stack: "'Spoqa Han Sans Neo', 'Pretendard', 'Malgun Gothic', sans-serif"
+            },
+            {
+                key: 'ibm',
+                name: 'IBM Plex Sans KR',
+                desc: '또렷하고 스마트한 현대적 고딕 · 장시간 봐도 눈이 편안한 균형감',
+                stack: "'IBM Plex Sans KR', 'Pretendard', 'Malgun Gothic', sans-serif"
+            },
+            {
+                key: 'pretendard',
+                name: '프리텐다드 (Pretendard)',
+                desc: '국내 웹·앱에서 가장 대중적인 최신 표준 고딕 (애플·토스 스타일)',
+                stack: "'Pretendard', 'Malgun Gothic', sans-serif"
+            }
+        ];
+
+        const FONT_PRESETS = Object.fromEntries(FONT_OPTIONS.map(f => [f.key, f.stack]));
 
         const ICON_CATEGORIES = [
             {
@@ -411,7 +473,7 @@
 
         function mergeConfig(base, override) {
             const merged = JSON.parse(JSON.stringify(base || {}));
-            if (!merged.fontFamily || !FONT_PRESETS[merged.fontFamily]) merged.fontFamily = 'sunflower';
+            if (!merged.fontFamily || !FONT_PRESETS[merged.fontFamily]) merged.fontFamily = DEFAULT_FONT_KEY;
             if (!override || typeof override !== 'object') return merged;
             for (const key of Object.keys(override)) {
                 if (key === 'schedule' && override.schedule && typeof override.schedule === 'object') {
@@ -423,18 +485,48 @@
                     merged[key] = override[key];
                 }
             }
-            if (!FONT_PRESETS[merged.fontFamily]) merged.fontFamily = 'sunflower';
+            if (!FONT_PRESETS[merged.fontFamily]) merged.fontFamily = DEFAULT_FONT_KEY;
             return merged;
         }
 
         function applyFont(fontKey) {
-            const stack = FONT_PRESETS[fontKey] || FONT_PRESETS.sunflower;
+            const stack = FONT_PRESETS[fontKey] || FONT_PRESETS[DEFAULT_FONT_KEY];
             document.documentElement.style.setProperty('--app-font', stack);
         }
 
-        function previewSelectedFont(fontKey) {
-            applyFont(fontKey);
+        function renderFontCards(selectedKey) {
+            const list = document.getElementById('fontCardList');
+            list.innerHTML = '';
+            const activeKey = FONT_PRESETS[selectedKey] ? selectedKey : DEFAULT_FONT_KEY;
+
+            FONT_OPTIONS.forEach(opt => {
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = `font-card ${opt.key === activeKey ? 'selected' : ''}`;
+                card.onclick = () => selectFontCard(opt.key);
+
+                card.innerHTML = `
+                    <div class="font-card-top">
+                        <div class="font-card-meta">
+                            <span class="font-card-name">${opt.name}</span>
+                            <span class="font-card-desc">${opt.desc}</span>
+                        </div>
+                        <span class="font-card-check">✓ 선택됨</span>
+                    </div>
+                    <div class="font-card-sample" style="font-family: ${opt.stack};">
+                        <span class="font-card-sample-text">🏫 성지여자고등학교 3학년부 전달사항 · 📌 수행평가 제출 마감</span>
+                        <span class="font-card-sample-num">08:30:00 · D-14</span>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function selectFontCard(fontKey) {
+            if (!FONT_PRESETS[fontKey]) return;
             if (workingConfig) workingConfig.fontFamily = fontKey;
+            applyFont(fontKey);
+            renderFontCards(fontKey);
         }
 
         let toastTimer = null;
@@ -582,9 +674,10 @@
         function populateForms() {
             document.getElementById('cfgSchoolName').value = workingConfig.schoolName || '';
             document.getElementById('cfgGradeName').value = workingConfig.gradeName || '';
-            const fontKey = FONT_PRESETS[workingConfig.fontFamily] ? workingConfig.fontFamily : 'sunflower';
-            document.getElementById('cfgFontFamily').value = fontKey;
+            const fontKey = FONT_PRESETS[workingConfig.fontFamily] ? workingConfig.fontFamily : DEFAULT_FONT_KEY;
+            workingConfig.fontFamily = fontKey;
             applyFont(fontKey);
+            renderFontCards(fontKey);
 
             document.getElementById('cfgClassCount').value = workingConfig.classCount ?? 8;
             document.getElementById('cfgDinnerHour').value = workingConfig.dinnerSwitchHour ?? 14;
@@ -817,7 +910,7 @@
         function collectConfigFromForms() {
             workingConfig.schoolName = document.getElementById('cfgSchoolName').value.trim() || '성지여자고등학교';
             workingConfig.gradeName = document.getElementById('cfgGradeName').value.trim() || '3학년부';
-            workingConfig.fontFamily = document.getElementById('cfgFontFamily').value || 'sunflower';
+            workingConfig.fontFamily = FONT_PRESETS[workingConfig.fontFamily] ? workingConfig.fontFamily : DEFAULT_FONT_KEY;
             workingConfig.classCount = Math.max(1, Math.min(20, Number(document.getElementById('cfgClassCount').value) || 8));
             workingConfig.dinnerSwitchHour = Math.max(10, Math.min(20, Number(document.getElementById('cfgDinnerHour').value) || 14));
             workingConfig.weatherLabel = document.getElementById('cfgWeatherLabel').value.trim() || '창원(마산) 날씨';
