@@ -5,9 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="robots" content="noindex, nofollow">
     <title id="pageTitle">성지여자고등학교 학년부 대시보드</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Hahmlet:wght@400;500;700&family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
     <script src="./config.js"></script>
     <style>
+        :root {
+            --app-font: 'Gowun Dodum', 'Pretendard', 'Malgun Gothic', sans-serif;
+        }
+
         /* ========================================= */
         /* 🌙 1. 다크 테마 (기본값 - 세련된 블랙) */
         /* ========================================= */
@@ -108,8 +115,8 @@
             --group1-color: #1976D2; --group2-color: #E67E22; --group3-color: #8E24AA; --group4-color: #2E7D32;
         }
 
-        body, input, textarea, button { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; margin: 0; }
-        body { padding: 15px 20px; background-color: var(--bg-color); color: var(--text-main); height: 100vh; box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden; transition: background-color 0.3s; }
+        body, input, textarea, button, select { font-family: var(--app-font); margin: 0; }
+        body { padding: 15px 20px; background-color: var(--bg-color); color: var(--text-main); height: 100vh; box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden; transition: background-color 0.3s; -webkit-font-smoothing: antialiased; }
 
         .main-wrapper { display: flex; gap: 15px; width: 100%; max-width: 1400px; margin: 0 auto; height: 100%; min-height: 600px; flex-grow: 1; }
 
@@ -134,7 +141,7 @@
         .search-btn:hover { transform: scale(1.05); }
 
         #sidebarLinks { display: flex; flex-direction: column; gap: 6px; flex-grow: 1; }
-        .shortcut-btn { display: flex; align-items: center; gap: 10px; padding: 9px 12px; background: var(--hover-bg); border-radius: 8px; text-decoration: none; color: inherit; font-weight: bold; font-size: 0.88rem; transition: all 0.2s ease; flex-shrink: 0; border: 1px solid transparent; }
+        .shortcut-btn { display: flex; align-items: center; gap: 10px; padding: 9px 12px; background: var(--hover-bg); border-radius: 8px; text-decoration: none; color: inherit; font-weight: bold; font-size: 0.89rem; transition: all 0.2s ease; flex-shrink: 0; border: 1px solid transparent; }
         .shortcut-icon { font-size: 1.02rem; flex-shrink: 0; }
         .shortcut-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
         .shortcut-btn.group-1 { color: var(--group1-color); }
@@ -151,11 +158,11 @@
         .card-header { font-size: 1.12rem; font-weight: bold; color: var(--accent-main); margin-bottom: 10px; border-bottom: 1px solid var(--border-color-strong); padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; gap: 8px; }
         .card-header-actions { display: flex; gap: 8px; align-items: center; }
 
-        .grade-badge { font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--notice-today-bg); color: var(--accent-main); border: 1px solid var(--notice-today-border); white-space: nowrap; }
+        .grade-badge { font-size: 0.82rem; font-weight: 700; padding: 4px 11px; border-radius: 999px; background: var(--notice-today-bg); color: var(--accent-main); border: 1px solid var(--notice-today-border); white-space: nowrap; }
         .mode-badge { font-size: 0.72rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: var(--period-bg); color: var(--accent-sub); border: 1px solid var(--period-border); white-space: nowrap; display: none; }
         .mode-badge.visible { display: inline-flex; align-items: center; gap: 4px; }
 
-        .filter-input { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--input-border); border-radius: 6px; padding: 4px 8px; font-size: 0.8rem; outline: none; transition: 0.2s; width: 100px; }
+        .filter-input { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--input-border); border-radius: 6px; padding: 4px 8px; font-size: 0.82rem; outline: none; transition: 0.2s; width: 100px; }
         .filter-input:focus { border-color: var(--accent-sub); width: 140px; }
 
         .primary-btn { background: var(--accent-main); color: var(--btn-text); border: none; border-radius: 6px; padding: 6px 12px; font-size: 0.85rem; font-weight: bold; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
@@ -167,18 +174,18 @@
         .card-3 { grid-area: 2 / 1 / 3 / 2; }
         .card-2 { grid-area: 2 / 2 / 3 / 3; }
 
-        .date-display { font-size: 1.02rem; color: var(--accent-main); text-align: center; font-weight: bold; letter-spacing: 0.5px; }
-        .time-display { font-size: 3.1rem; font-weight: bold; text-align: center; color: var(--accent-sub); letter-spacing: 2px; margin: 4px 0; line-height: 1.05; }
-        .weather-display { font-size: 0.88rem; text-align: center; color: var(--text-main); margin-bottom: 8px; font-weight: 500; }
+        .date-display { font-size: 1.04rem; color: var(--accent-main); text-align: center; font-weight: bold; letter-spacing: 0.5px; }
+        .time-display { font-size: 3.1rem; font-weight: bold; text-align: center; color: var(--accent-sub); letter-spacing: 2px; margin: 4px 0; line-height: 1.08; font-variant-numeric: tabular-nums; }
+        .weather-display { font-size: 0.9rem; text-align: center; color: var(--text-main); margin-bottom: 8px; font-weight: 500; }
 
         .lunch-box { background: var(--box-bg); border: 1px solid var(--border-color); padding: 10px 12px; border-radius: 10px; text-align: center; }
         .lunch-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; gap: 8px; }
-        .lunch-title { font-size: 0.84rem; color: var(--accent-main); font-weight: bold; text-align: left; }
+        .lunch-title { font-size: 0.85rem; color: var(--accent-main); font-weight: bold; text-align: left; }
         .meal-toggle { display: inline-flex; background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 7px; padding: 2px; gap: 2px; flex-shrink: 0; }
-        .meal-btn { border: none; background: transparent; color: var(--text-sub); font-size: 0.76rem; font-weight: 700; padding: 3px 9px; border-radius: 5px; cursor: pointer; transition: 0.2s; }
+        .meal-btn { border: none; background: transparent; color: var(--text-sub); font-size: 0.78rem; font-weight: 700; padding: 3px 9px; border-radius: 5px; cursor: pointer; transition: 0.2s; }
         .meal-btn:hover { color: var(--text-main); }
         .meal-btn.active { background: var(--accent-main); color: var(--btn-text); }
-        .lunch-menu { font-size: 0.84rem; line-height: 1.45; word-break: keep-all; color: var(--text-main); min-height: 1.45em; }
+        .lunch-menu { font-size: 0.86rem; line-height: 1.5; word-break: keep-all; color: var(--text-main); min-height: 1.5em; }
 
         /* ========================================= */
         /* 📝 포스트잇 메모장 CSS */
@@ -187,23 +194,23 @@
         .post-it { flex: 1; display: flex; flex-direction: column; padding: 14px; border-radius: 2px 2px 15px 2px; position: relative; color: #333; min-width: 0; }
         .post-it.yellow { background: linear-gradient(135deg, #fdfd96 82%, #fcfc88 100%); box-shadow: 3px 3px 10px rgba(0,0,0,0.2); }
         .post-it.pink { background: linear-gradient(135deg, #ffb7b2 82%, #ffa19c 100%); box-shadow: 3px 3px 10px rgba(0,0,0,0.2); }
-        .post-it-title { font-weight: 800; margin-bottom: 8px; border-bottom: 1px dashed rgba(0,0,0,0.2); padding-bottom: 5px; font-size: 0.92rem; display: flex; justify-content: space-between; align-items: center; color: #222; }
-        .post-it textarea { flex-grow: 1; background: transparent; border: none; outline: none; resize: none; color: #222; font-size: 0.92rem; line-height: 1.6; }
+        .post-it-title { font-weight: 800; margin-bottom: 8px; border-bottom: 1px dashed rgba(0,0,0,0.2); padding-bottom: 5px; font-size: 0.94rem; display: flex; justify-content: space-between; align-items: center; color: #222; }
+        .post-it textarea { flex-grow: 1; background: transparent; border: none; outline: none; resize: none; color: #222; font-size: 0.94rem; line-height: 1.65; }
         .post-it textarea::placeholder { color: rgba(0,0,0,0.5); font-weight: 500; }
 
         .checklist-input-wrap { display: flex; gap: 5px; margin-bottom: 8px; }
-        .checklist-input-wrap input[type="text"] { flex-grow: 1; min-width: 0; background: rgba(255,255,255,0.75) !important; border: 1px solid rgba(0,0,0,0.2) !important; border-radius: 4px; padding: 6px 8px; font-size: 0.84rem; color: #222 !important; outline: none; }
+        .checklist-input-wrap input[type="text"] { flex-grow: 1; min-width: 0; background: rgba(255,255,255,0.75) !important; border: 1px solid rgba(0,0,0,0.2) !important; border-radius: 4px; padding: 6px 8px; font-size: 0.86rem; color: #222 !important; outline: none; }
         .checklist-input-wrap input[type="text"]::placeholder { color: rgba(0,0,0,0.5) !important; font-weight: bold; }
         .checklist-input-wrap input[type="text"]:focus { background: rgba(255,255,255,0.95) !important; border-color: #ff8fab !important; }
-        .checklist-input-wrap button { background: rgba(0,0,0,0.15); border: none; border-radius: 4px; padding: 4px 9px; font-size: 0.8rem; font-weight: bold; cursor: pointer; color: #222; transition: 0.2s; flex-shrink: 0; }
+        .checklist-input-wrap button { background: rgba(0,0,0,0.15); border: none; border-radius: 4px; padding: 4px 9px; font-size: 0.82rem; font-weight: bold; cursor: pointer; color: #222; transition: 0.2s; flex-shrink: 0; }
         .checklist-input-wrap button:hover { background: rgba(0,0,0,0.25); }
 
         .checklist-items { display: flex; flex-direction: column; gap: 4px; overflow-y: auto; flex-grow: 1; padding-right: 4px; min-height: 0; }
         .checklist-item { display: flex; align-items: flex-start; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed rgba(0,0,0,0.1); gap: 6px; }
         .checklist-item.checked .text { text-decoration: line-through; color: rgba(0,0,0,0.4); }
-        .checklist-item .text { flex-grow: 1; font-size: 0.88rem; cursor: pointer; word-break: break-word; line-height: 1.4; margin-top: 1px; color: #222; }
-        .checklist-item input[type="checkbox"] { margin: 0; margin-top: 3px; cursor: pointer; flex-shrink: 0; }
-        .checklist-item input[type="text"].edit-input { flex-grow: 1; min-width: 0; background: rgba(255,255,255,0.85) !important; border: 1px solid rgba(0,0,0,0.25) !important; border-radius: 4px; padding: 2px 5px; font-size: 0.88rem; color: #222 !important; outline: none; }
+        .checklist-item .text { flex-grow: 1; font-size: 0.9rem; cursor: pointer; word-break: break-word; line-height: 1.45; margin-top: 1px; color: #222; }
+        .checklist-item input[type="checkbox"] { margin: 0; margin-top: 4px; cursor: pointer; flex-shrink: 0; }
+        .checklist-item input[type="text"].edit-input { flex-grow: 1; min-width: 0; background: rgba(255,255,255,0.85) !important; border: 1px solid rgba(0,0,0,0.25) !important; border-radius: 4px; padding: 2px 5px; font-size: 0.9rem; color: #222 !important; outline: none; }
         .checklist-actions { display: flex; gap: 2px; flex-shrink: 0; }
         .cl-btn { background: none; border: none; cursor: pointer; opacity: 0.55; font-size: 0.82rem; padding: 2px; display: flex; align-items: center; justify-content: center; }
         .cl-btn:hover { opacity: 1; transform: scale(1.1); }
@@ -212,15 +219,15 @@
         /* 📢 전달사항 & 🏫 D-Day */
         /* ========================================= */
         #noticeBoard { flex-grow: 1; overflow-y: auto; padding-right: 5px; min-height: 0; }
-        .section-title { font-size: 0.88rem; font-weight: bold; color: var(--accent-sub); margin-bottom: 6px; margin-top: 12px; display: flex; align-items: center; gap: 5px; }
+        .section-title { font-size: 0.9rem; font-weight: bold; color: var(--accent-sub); margin-bottom: 6px; margin-top: 12px; display: flex; align-items: center; gap: 5px; }
         .section-title:first-child { margin-top: 0; }
         .section-divider { border-top: 1px dashed var(--border-color-strong); margin: 12px 0 10px 0; }
 
         .notice-item { position: relative; border-radius: 8px; padding: 13px 62px 13px 14px; margin-bottom: 10px; }
         .notice-item.today { background: var(--notice-today-bg); border: 1px solid var(--notice-today-border); }
         .notice-item.past { background: var(--notice-past-bg); border: 1px solid var(--border-color); }
-        .notice-time { font-size: 0.75rem; color: var(--text-sub); display: block; margin-bottom: 4px; font-weight: bold; }
-        .notice-text { font-size: 0.94rem; line-height: 1.5; color: var(--text-main); word-break: break-word; }
+        .notice-time { font-size: 0.77rem; color: var(--text-sub); display: block; margin-bottom: 4px; font-weight: bold; }
+        .notice-text { font-size: 0.96rem; line-height: 1.55; color: var(--text-main); word-break: break-word; }
 
         .d-day-box { background: var(--box-bg); padding: 11px 14px; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; gap: 6px; margin-bottom: 8px; font-size: 0.98rem; border: 1px solid var(--border-color); border-left: 4px solid var(--accent-main); transition: all 0.25s; }
         .d-day-box.dday-today { background: var(--dday-today-bg); border-color: var(--dday-today-border); border-left: 4px solid var(--accent-red); }
@@ -228,12 +235,12 @@
         .accent-text { color: var(--accent-red); font-weight: bold; margin-right: 8px; white-space: nowrap; }
 
         .class-check-wrap { display: flex; gap: 6px; margin-top: 2px; flex-wrap: wrap; }
-        .class-btn { width: 23px; height: 23px; border-radius: 50%; border: none; font-size: 0.74rem; font-weight: bold; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; padding: 0; }
+        .class-btn { width: 23px; height: 23px; border-radius: 50%; border: none; font-size: 0.76rem; font-weight: bold; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; padding: 0; }
         .class-btn.off { background: var(--class-off-bg); color: var(--class-off-text); }
         .class-btn.on { background: var(--accent-main); color: var(--class-on-text); box-shadow: 0 0 6px var(--class-on-shadow); }
         .class-btn:hover { transform: scale(1.15); }
 
-        .period-notifier { font-size: 1.04rem; font-weight: bold; text-align: center; padding: 8px 10px; background: var(--period-bg); color: var(--accent-sub); border-radius: 8px; margin-bottom: 12px; border: 1px dashed var(--period-border); flex-shrink: 0; }
+        .period-notifier { font-size: 1.05rem; font-weight: bold; text-align: center; padding: 8px 10px; background: var(--period-bg); color: var(--accent-sub); border-radius: 8px; margin-bottom: 12px; border: 1px dashed var(--period-border); flex-shrink: 0; }
 
         .action-btn { background: none; border: none; cursor: pointer; opacity: 0.65; transition: 0.2s; padding: 2px; margin-left: 3px; color: var(--text-sub); display: flex; align-items: center; justify-content: center; }
         .action-btn:hover { opacity: 1; transform: scale(1.15); }
@@ -384,13 +391,13 @@
 
         <!-- 4카드 대시보드 -->
         <main class="dashboard-container">
-            <!-- 카드 1: 시간 · 날씨 · 급식 -->
+            <!-- 카드 1: 학교명 · 시간 · 날씨 · 급식 -->
             <section class="card card-1">
                 <div class="card-header">
-                    <span>🕒 시간 · 날씨 · 급식</span>
+                    <span id="card1Title">🏫 성지여자고등학교</span>
                     <div class="card-header-actions">
                         <span class="mode-badge" id="testModeBadge" title="config.js에 Apps Script URL을 입력하면 구글 시트와 연동됩니다">🧪 테스트 모드</span>
-                        <span class="grade-badge" id="headerGradeBadge">성지여고 3학년부</span>
+                        <span class="grade-badge" id="headerGradeBadge">3학년부</span>
                     </div>
                 </div>
                 <div style="display: flex; flex-direction: column; justify-content: center; flex-grow: 1;">
@@ -454,7 +461,7 @@
             <!-- 카드 2: 주요 업무 D-Day -->
             <section class="card card-2">
                 <div class="card-header" style="color: var(--accent-sub);">
-                    <span id="ddayTitleText">🏫 3학년부 주요 업무 D-Day</span>
+                    <span id="ddayTitleText">📅 3학년부 주요 업무 D-Day</span>
                     <div class="card-header-actions">
                         <input type="text" id="ddaySearch" class="filter-input" placeholder="🔍 검색..." oninput="filterDdays()">
                         <button type="button" class="primary-btn" onclick="openDdayModal('add')">
@@ -475,7 +482,7 @@
 
     <script>
         // =========================================
-        // 0. 전역 상태 & 스토리지 키
+        // 0. 전역 상태 & 스토리지 키 & 폰트 프리셋
         // =========================================
         const STORAGE_KEYS = {
             THEME: 'sj_dashboard_theme',
@@ -485,6 +492,13 @@
             NEIS_CODE: 'sj_neis_school_code',
             LOCAL_NOTICES: 'sj_local_notices',
             LOCAL_DDAYS: 'sj_local_ddays'
+        };
+
+        const FONT_PRESETS = {
+            gowun: "'Gowun Dodum', 'Pretendard', 'Malgun Gothic', sans-serif",
+            ibm: "'IBM Plex Sans KR', 'Pretendard', 'Malgun Gothic', sans-serif",
+            hahmlet: "'Hahmlet', 'Pretendard', 'Malgun Gothic', serif",
+            pretendard: "'Pretendard', 'Malgun Gothic', sans-serif"
         };
 
         const API_URL = (window.DASHBOARD_ENV && window.DASHBOARD_ENV.APPS_SCRIPT_URL || '').trim();
@@ -529,7 +543,7 @@
             const trimmed = String(url ?? '').trim();
             if (!trimmed) return '';
             if (/^https?:\/\//i.test(trimmed)) return trimmed;
-            if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed)) return ''; // javascript: 등 차단
+            if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed)) return '';
             return 'https://' + trimmed;
         }
 
@@ -555,6 +569,7 @@
 
         function mergeConfig(base, override) {
             const merged = JSON.parse(JSON.stringify(base || {}));
+            if (!merged.fontFamily) merged.fontFamily = 'gowun';
             if (!override || typeof override !== 'object') return merged;
             for (const key of Object.keys(override)) {
                 if (key === 'schedule' && override.schedule && typeof override.schedule === 'object') {
@@ -579,7 +594,6 @@
             toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
         }
 
-        // GAS v2 통신 함수 (text/plain으로 CORS preflight 회피하여 JSON 응답 직접 수신)
         async function apiGet(params = {}) {
             const url = new URL(API_URL);
             Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
@@ -605,7 +619,7 @@
         }
 
         // =========================================
-        // 2. UI / 테마 / 사이드바 / 설정 반영
+        // 2. UI / 테마 / 폰트 / 사이드바 / 설정 반영
         // =========================================
         function toggleSidebar() {
             document.getElementById('sidebar').classList.toggle('open');
@@ -630,17 +644,27 @@
             applyTheme(next);
         }
 
+        function applyFont(fontKey) {
+            const stack = FONT_PRESETS[fontKey] || FONT_PRESETS.gowun;
+            document.documentElement.style.setProperty('--app-font', stack);
+        }
+
         function applyConfigToUI() {
-            const shortSchool = (appConfig.schoolName || '성지여자고등학교').replace('여자고등학교', '여고');
-            const fullTitle = `${shortSchool} ${appConfig.gradeName} 대시보드`;
+            const schoolFull = appConfig.schoolName || '성지여자고등학교';
+            const shortSchool = schoolFull.replace('여자고등학교', '여고');
+            const gradeLabel = appConfig.gradeName || '3학년부';
+            const fullTitle = `${shortSchool} ${gradeLabel} 대시보드`;
+
+            applyFont(appConfig.fontFamily || 'gowun');
 
             document.title = fullTitle;
             document.getElementById('pageTitle').textContent = fullTitle;
             document.getElementById('mobilePageTitle').textContent = fullTitle;
-            document.getElementById('headerGradeBadge').textContent = `${shortSchool} ${appConfig.gradeName}`;
-            document.getElementById('noticeTitleText').textContent = `📢 ${appConfig.gradeName} 전달사항`;
-            document.getElementById('ddayTitleText').textContent = `🏫 ${appConfig.gradeName} 주요 업무 D-Day`;
-            document.getElementById('mealBoxTitle').textContent = `🍽️ ${appConfig.schoolName} 오늘의 급식`;
+            document.getElementById('card1Title').textContent = `🏫 ${schoolFull}`;
+            document.getElementById('headerGradeBadge').textContent = gradeLabel;
+            document.getElementById('noticeTitleText').textContent = `📢 ${gradeLabel} 전달사항`;
+            document.getElementById('ddayTitleText').textContent = `📅 ${gradeLabel} 주요 업무 D-Day`;
+            document.getElementById('mealBoxTitle').textContent = `🍽️ ${schoolFull} 오늘의 급식`;
 
             renderSidebarShortcuts();
             updateTime();
@@ -710,7 +734,7 @@
                     appConfig = mergeConfig(window.DEFAULT_CONFIG, res.config);
                     localStorage.setItem(STORAGE_KEYS.CONFIG_CACHE, JSON.stringify(res.config));
                     applyConfigToUI();
-                    renderDdaysFromMap(); // 반 수 변경 시 반영
+                    renderDdaysFromMap();
                 }
             } catch (e) {
                 console.warn('원격 설정 로딩 실패(캐시/기본값 사용):', e);
@@ -748,7 +772,6 @@
             const s = String(now.getSeconds()).padStart(2, '0');
             document.getElementById('currentTime').textContent = `${h}:${m}:${s}`;
 
-            // 자정 경과 감지 -> 날씨·급식·D-Day·전달사항 자동 갱신
             const todayKey = getTodayString();
             if (todayKey !== lastDateKey) {
                 lastDateKey = todayKey;
@@ -760,14 +783,12 @@
                 fetchDdays();
             }
 
-            // 오후 2시(dinnerSwitchHour) 경과 시 사용자가 수동 전환하지 않았다면 자동 석식 전환
             const autoType = getAutoMealType();
             if (userOverrodeMealDate !== todayKey && selectedMealType !== autoType) {
                 selectedMealType = autoType;
                 renderMealUI();
             }
 
-            // 일과표 계산
             const day = now.getDay();
             const sched = appConfig.schedule || window.DEFAULT_CONFIG.schedule;
             const periodEl = document.getElementById('periodInfo');
@@ -833,7 +854,7 @@
                 const tmrwMin = Math.round(data.daily.temperature_2m_min[1]);
 
                 document.getElementById('weatherInfo').innerHTML =
-                    `${escapeHtml(label)}: ${getIcon(curCode)} ${curTemp}°C <span style="font-size:0.8rem; color:var(--text-sub);">(최고 ${todayMax}°/최저 ${todayMin}°)</span> <span style="margin:0 8px; color:var(--text-sub);">|</span> <span style="font-size:0.84rem; color:var(--text-sub);">내일: ${getIcon(tmrwCode)} ${tmrwMax}° / ${tmrwMin}°</span>`;
+                    `${escapeHtml(label)}: ${getIcon(curCode)} ${curTemp}°C <span style="font-size:0.82rem; color:var(--text-sub);">(최고 ${todayMax}°/최저 ${todayMin}°)</span> <span style="margin:0 8px; color:var(--text-sub);">|</span> <span style="font-size:0.85rem; color:var(--text-sub);">내일: ${getIcon(tmrwCode)} ${tmrwMax}° / ${tmrwMin}°</span>`;
             } catch (e) {
                 document.getElementById('weatherInfo').textContent = '날씨 로딩 실패';
             }
@@ -924,14 +945,14 @@
         }
 
         // =========================================
-        // 5. 포스트잇 체크리스트 & 자유 메모 (XSS·IME 수정)
+        // 5. 포스트잇 체크리스트 & 자유 메모
         // =========================================
         let checklistData = safeJsonParse(localStorage.getItem(STORAGE_KEYS.CHECKLIST), []);
         if (!Array.isArray(checklistData)) checklistData = [];
         checklistData = checklistData.map(item => ({
             text: String(item?.text ?? ''),
             checked: Boolean(item?.checked),
-            isEditing: false // 새로고침 시 편집 모드 고착 방지
+            isEditing: false
         }));
 
         function saveChecklistStorage() {
@@ -1373,7 +1394,7 @@
                 const innerHtml = `
                     <div class="d-day-row" style="display:flex; justify-content:space-between; align-items:center; width:100%; gap:10px;">
                         <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex-grow:1; min-width:0;" title="${safeName}">
-                            ${safeName} <span style="font-size:0.8rem; color:var(--text-sub);">(${shortDate} ${dayStr})</span>
+                            ${safeName} <span style="font-size:0.82rem; color:var(--text-sub);">(${shortDate} ${dayStr})</span>
                         </div>
                         <div class="d-day-actions">
                             ${linkBadge}${fileBadge}
@@ -1446,7 +1467,6 @@
             try {
                 await apiPost({ action: 'toggleCheck', type: 'dday', id, classIndex, classCount });
             } catch (e) {
-                // 실패 시 UI 롤백
                 btn.classList.toggle('on', wasOn);
                 btn.classList.toggle('off', !wasOn);
                 showToast('체크 저장 실패: ' + e.message, true);
@@ -1651,7 +1671,6 @@
             applyConfigToUI();
             selectMealType(getAutoMealType(), false);
 
-            // 모달 ESC 닫기
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     closeEditModal();
@@ -1659,14 +1678,12 @@
                 }
             });
 
-            // 초기 데이터 로드
             await loadRemoteConfig();
             fetchWeather();
             fetchMeals();
             fetchNotices();
             fetchDdays();
 
-            // 주기적 갱신
             setInterval(updateTime, 1000);
             setInterval(() => {
                 fetchNotices();
