@@ -9,7 +9,7 @@
  */
 window.DASHBOARD_ENV = {
     // ▼ 여기에 Google Apps Script 웹앱 배포 URL을 붙여넣으세요. (비워두면 로컬 테스트 모드)
-    APPS_SCRIPT_URL: ""
+    APPS_SCRIPT_URL: "https://script.google.com/macros/s/AKfycbxCFPhXeuc6tdajTPzb-cfzdOS9h_p0gAJ4YUZLXoB4RcyNlp5jRtt5EUw49vVJNvzB6w/exec"
 };
 
 window.DEFAULT_CONFIG = {
