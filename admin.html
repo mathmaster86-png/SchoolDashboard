@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>성지여고 대시보드 관리자 설정</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script src="./config.js"></script>
+    <style>
+        :root[data-theme="dark"] {
+            --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #ffffff; --text-sub: #b3b3b3;
+            --accent-main: #00D2B4; --accent-sub: #D1B280; --accent-red: #FF6B6B;
+            --input-bg: rgba(0,0,0,0.3); --input-border: rgba(255,255,255,0.14);
+            --border-color: rgba(255,255,255,0.08); --hover-bg: rgba(255,255,255,0.06);
+            --btn-text: #000; --card-shadow: rgba(0,0,0,0.35);
+        }
+        :root[data-theme="blossom"] {
+            --bg-color: #FFF0F5; --card-bg: #FFFFFF; --text-main: #4A3B3C; --text-sub: #8B7D7E;
+            --accent-main: #FF8FAB; --accent-sub: #E07A3F; --accent-red: #FF5252;
+            --input-bg: #FFF9FA; --input-border: #FFD1DC; --border-color: #FFD1DC;
+            --hover-bg: #FFE4EB; --btn-text: #fff; --card-shadow: rgba(255,182,193,0.25);
+        }
+        :root[data-theme="sky"] {
+            --bg-color: #F0F8FF; --card-bg: #FFFFFF; --text-main: #1E293B; --text-sub: #64748B;
+            --accent-main: #0EA5E9; --accent-sub: #D97706; --accent-red: #EF4444;
+            --input-bg: #F8FAFC; --input-border: #CBD5E1; --border-color: #E2E8F0;
+            --hover-bg: #F1F5F9; --btn-text: #fff; --card-shadow: rgba(14,165,233,0.12);
+        }
+        :root[data-theme="modern"] {
+            --bg-color: #202124; --card-bg: #2D2E31; --text-main: #E8EAED; --text-sub: #9AA0A6;
+            --accent-main: #8AB4F8; --accent-sub: #FDE293; --accent-red: #F28B82;
+            --input-bg: #202124; --input-border: #5F6368; --border-color: #3C4043;
+            --hover-bg: #3C4043; --btn-text: #202124; --card-shadow: rgba(0,0,0,0.4);
+        }
+        :root[data-theme="forest"] {
+            --bg-color: #F4F7F4; --card-bg: #FFFFFF; --text-main: #2C3E2D; --text-sub: #7A8B7B;
+            --accent-main: #4CAF50; --accent-sub: #E67E22; --accent-red: #E53935;
+            --input-bg: #F9FCF9; --input-border: #C8E6C9; --border-color: #E8EFE8;
+            --hover-bg: #E8F5E9; --btn-text: #fff; --card-shadow: rgba(76,175,80,0.15);
+        }
+
+        * { box-sizing: border-box; }
+        body, input, select, button, textarea { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; }
+        body { margin: 0; padding: 24px 16px 80px; background: var(--bg-color); color: var(--text-main); min-height: 100vh; }
+
+        .container { max-width: 980px; margin: 0 auto; }
+
+        .topbar { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 20px; background: var(--card-bg); padding: 16px 20px; border-radius: 14px; border: 1px solid var(--border-color); box-shadow: 0 6px 16px var(--card-shadow); }
+        .topbar h1 { margin: 0; font-size: 1.25rem; color: var(--accent-main); display: flex; align-items: center; gap: 8px; }
+        .topbar-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+        .badge { font-size: 0.78rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; border: 1px solid var(--border-color); background: var(--hover-bg); color: var(--accent-sub); }
+        .btn { border: none; border-radius: 8px; padding: 9px 15px; font-size: 0.88rem; font-weight: 700; cursor: pointer; transition: 0.2s; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; }
+        .btn-primary { background: var(--accent-main); color: var(--btn-text); }
+        .btn-primary:hover { filter: brightness(1.06); transform: translateY(-1px); }
+        .btn-sub { background: var(--hover-bg); color: var(--text-main); border: 1px solid var(--input-border); }
+        .btn-sub:hover { border-color: var(--accent-main); }
+        .btn-danger { background: rgba(255,107,107,0.15); color: var(--accent-red); border: 1px solid rgba(255,107,107,0.4); }
+        .btn-danger:hover { background: var(--accent-red); color: #fff; }
+        .btn-sm { padding: 5px 10px; font-size: 0.8rem; border-radius: 6px; }
+        .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        .auth-box { max-width: 420px; margin: 70px auto; background: var(--card-bg); padding: 28px; border-radius: 16px; border: 1px solid var(--border-color); box-shadow: 0 10px 24px var(--card-shadow); text-align: center; }
+        .auth-box h2 { margin: 0 0 8px; color: var(--accent-main); font-size: 1.25rem; }
+        .auth-box p { margin: 0 0 18px; color: var(--text-sub); font-size: 0.9rem; line-height: 1.5; }
+        .auth-box input { width: 100%; padding: 11px 12px; border-radius: 8px; border: 1px solid var(--input-border); background: var(--input-bg); color: var(--text-main); font-size: 1rem; margin-bottom: 12px; outline: none; text-align: center; letter-spacing: 2px; }
+        .auth-box input:focus { border-color: var(--accent-main); }
+
+        .tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+        .tab-btn { background: var(--card-bg); color: var(--text-sub); border: 1px solid var(--border-color); padding: 10px 16px; border-radius: 10px; font-weight: 700; font-size: 0.92rem; cursor: pointer; transition: 0.2s; }
+        .tab-btn.active { background: var(--accent-main); color: var(--btn-text); border-color: var(--accent-main); }
+
+        .panel { display: none; background: var(--card-bg); padding: 22px; border-radius: 14px; border: 1px solid var(--border-color); box-shadow: 0 6px 16px var(--card-shadow); }
+        .panel.active { display: block; }
+        .panel h2 { margin: 0 0 6px; font-size: 1.08rem; color: var(--accent-sub); }
+        .panel-desc { margin: 0 0 18px; font-size: 0.86rem; color: var(--text-sub); line-height: 1.5; }
+
+        .form-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+        .form-group { display: flex; flex-direction: column; gap: 6px; }
+        .form-group.full { grid-column: 1 / -1; }
+        label { font-size: 0.85rem; font-weight: 700; color: var(--text-sub); }
+        input[type="text"], input[type="number"], input[type="password"], input[type="time"], select, textarea {
+            background: var(--input-bg); color: var(--text-main); border: 1px solid var(--input-border);
+            border-radius: 8px; padding: 9px 11px; font-size: 0.9rem; outline: none; width: 100%;
+        }
+        input:focus, select:focus, textarea:focus { border-color: var(--accent-main); }
+
+        .row-list { display: flex; flex-direction: column; gap: 8px; }
+        .item-row { display: grid; gap: 8px; align-items: center; background: var(--hover-bg); padding: 10px; border-radius: 10px; border: 1px solid var(--border-color); }
+        .shortcut-row { grid-template-columns: 95px 62px 1.2fr 2fr auto; }
+        .schedule-row { grid-template-columns: 115px 115px 1fr auto; }
+        .row-actions { display: flex; gap: 4px; }
+
+        .day-tabs { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
+        .day-tab { padding: 7px 12px; border-radius: 8px; border: 1px solid var(--input-border); background: var(--input-bg); color: var(--text-sub); font-size: 0.84rem; font-weight: 700; cursor: pointer; }
+        .day-tab.active { background: var(--accent-sub); color: var(--btn-text); border-color: var(--accent-sub); }
+        .day-tab.has-override::after { content: " ●"; font-size: 0.7em; }
+
+        .override-bar { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; padding: 10px 12px; border-radius: 10px; background: var(--hover-bg); border: 1px solid var(--border-color); margin-bottom: 12px; font-size: 0.88rem; }
+
+        .save-bar { position: fixed; bottom: 0; left: 0; right: 0; background: var(--card-bg); border-top: 1px solid var(--border-color); padding: 12px 20px; display: flex; justify-content: center; z-index: 100; box-shadow: 0 -6px 18px var(--card-shadow); }
+        .save-bar-inner { width: 100%; max-width: 980px; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+
+        #toast { position: fixed; bottom: -60px; left: 50%; transform: translateX(-50%); background: var(--accent-main); color: var(--btn-text); padding: 12px 24px; border-radius: 30px; font-weight: bold; font-size: 0.92rem; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 10000; transition: bottom 0.35s ease; pointer-events: none; }
+        #toast.show { bottom: 76px; }
+        #toast.error { background: var(--accent-red); color: #fff; }
+
+        @media (max-width: 760px) {
+            .form-grid { grid-template-columns: 1fr; }
+            .shortcut-row, .schedule-row { grid-template-columns: 1fr 1fr; }
+            .shortcut-row input[data-field="url"], .schedule-row input[data-field="label"] { grid-column: 1 / -1; }
+            .row-actions { grid-column: 1 / -1; justify-content: flex-end; }
+        }
+    </style>
+</head>
+<body>
+    <div id="toast">알림</div>
+
+    <div class="container">
+        <div class="topbar">
+            <h1>⚙️ 대시보드 관리자 설정</h1>
+            <div class="topbar-actions">
+                <span class="badge" id="envModeBadge">확인중...</span>
+                <a href="./index.html" class="btn btn-sub">← 대시보드로 돌아가기</a>
+            </div>
+        </div>
+
+        <!-- 로그인 화면 (구글 시트 연동 시에만 표시) -->
+        <div id="authScreen" class="auth-box" style="display:none;">
+            <h2>🔐 관리자 인증</h2>
+            <p>일과표·사이드바·기본설정을 변경하려면<br>Apps Script에 설정된 관리자 비밀번호를 입력하세요.</p>
+            <input type="password" id="adminPinInput" placeholder="비밀번호 입력" onkeydown="if(event.key==='Enter') verifyAdmin()">
+            <button type="button" id="verifyBtn" class="btn btn-primary" style="width:100%; justify-content:center;" onclick="verifyAdmin()">인증하고 들어가기</button>
+        </div>
+
+        <!-- 메인 관리 화면 -->
+        <div id="adminApp" style="display:none;">
+            <div class="tabs">
+                <button type="button" class="tab-btn active" onclick="switchTab('basic', this)">1. 기본 정보</button>
+                <button type="button" class="tab-btn" onclick="switchTab('shortcuts', this)">2. 사이드바 바로가기</button>
+                <button type="button" class="tab-btn" onclick="switchTab('schedule', this)">3. 일과표(시정표)</button>
+                <button type="button" class="tab-btn" onclick="switchTab('security', this)">4. 비밀번호 · 백업</button>
+            </div>
+
+            <!-- 탭 1: 기본 정보 -->
+            <section id="tab-basic" class="panel active">
+                <h2>🏫 학교 · 학년 기본 정보</h2>
+                <p class="panel-desc">3월 학년 배정과 학급 수가 확정되면 여기에서 바로 수정하고 저장하세요. 저장 즉시 대시보드 제목과 반별 체크 버튼 개수가 반영됩니다.</p>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="cfgSchoolName">학교명 (나이스 급식 조회용 정확히 입력)</label>
+                        <input type="text" id="cfgSchoolName" placeholder="성지여자고등학교">
+                    </div>
+                    <div class="form-group">
+                        <label for="cfgGradeName">학년부 명칭</label>
+                        <input type="text" id="cfgGradeName" placeholder="예: 3학년부, 1학년부">
+                    </div>
+                    <div class="form-group">
+                        <label for="cfgClassCount">학급 수 (반별 체크 버튼 개수, 1~20)</label>
+                        <input type="number" id="cfgClassCount" min="1" max="20" value="8">
+                    </div>
+                    <div class="form-group">
+                        <label for="cfgDinnerHour">석식 자동 전환 시각 (24시간제, 기본 14시)</label>
+                        <input type="number" id="cfgDinnerHour" min="10" max="20" value="14">
+                    </div>
+                    <div class="form-group">
+                        <label for="cfgWeatherLabel">날씨 표시 지역명</label>
+                        <input type="text" id="cfgWeatherLabel" placeholder="창원(마산) 날씨">
+                    </div>
+                    <div class="form-group">
+                        <label for="cfgNeisOffice">교육청 코드 (경남: S10)</label>
+                        <input type="text" id="cfgNeisOffice" placeholder="S10">
+                    </div>
+                    <div class="form-group">
+                        <label for="cfgLat">날씨 위도 (Latitude)</label>
+                        <input type="text" id="cfgLat" placeholder="35.1980">
+                    </div>
+                    <div class="form-group">
+                        <label for="cfgLon">날씨 경도 (Longitude)</label>
+                        <input type="text" id="cfgLon" placeholder="128.5599">
+                    </div>
+                </div>
+            </section>
+
+            <!-- 탭 2: 사이드바 바로가기 -->
+            <section id="tab-shortcuts" class="panel">
+                <div style="display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px;">
+                    <div>
+                        <h2>⭐ 사이드바 바로가기 관리</h2>
+                        <p class="panel-desc" style="margin-bottom:0;">그룹 번호가 바뀔 때마다 사이드바에 점선 구분선이 자동으로 들어갑니다.</p>
+                    </div>
+                    <button type="button" class="btn btn-sub" onclick="addShortcutRow()">+ 링크 추가</button>
+                </div>
+                <div id="shortcutList" class="row-list"></div>
+            </section>
+
+            <!-- 탭 3: 일과표 -->
+            <section id="tab-schedule" class="panel">
+                <h2>🕒 일과표(시정표) 관리</h2>
+                <p class="panel-desc">평일 기본 시간표를 먼저 맞추고, 수요일 단축수업이나 야자 미운영 요일처럼 다른 요일만 선택해 별도 시간표를 켜세요.</p>
+
+                <div class="form-grid" style="margin-bottom:16px;">
+                    <div class="form-group">
+                        <label for="cfgMsgBefore">일과 시작 전 문구</label>
+                        <input type="text" id="cfgMsgBefore">
+                    </div>
+                    <div class="form-group">
+                        <label for="cfgMsgAfter">일과 종료 후 문구</label>
+                        <input type="text" id="cfgMsgAfter">
+                    </div>
+                    <div class="form-group full">
+                        <label for="cfgMsgWeekend">주말 문구</label>
+                        <input type="text" id="cfgMsgWeekend">
+                    </div>
+                </div>
+
+                <div class="day-tabs" id="dayTabs">
+                    <button type="button" class="day-tab active" data-day="default" onclick="selectScheduleDay('default')">평일 기본</button>
+                    <button type="button" class="day-tab" data-day="1" onclick="selectScheduleDay('1')">월요일</button>
+                    <button type="button" class="day-tab" data-day="2" onclick="selectScheduleDay('2')">화요일</button>
+                    <button type="button" class="day-tab" data-day="3" onclick="selectScheduleDay('3')">수요일</button>
+                    <button type="button" class="day-tab" data-day="4" onclick="selectScheduleDay('4')">목요일</button>
+                    <button type="button" class="day-tab" data-day="5" onclick="selectScheduleDay('5')">금요일</button>
+                </div>
+
+                <div id="overrideBar" class="override-bar" style="display:none;">
+                    <label style="display:flex; align-items:center; gap:8px; color:var(--text-main); cursor:pointer;">
+                        <input type="checkbox" id="useDayOverrideCheck" onchange="toggleDayOverride(this.checked)">
+                        <span id="overrideLabelText">이 요일은 별도 시간표 사용</span>
+                    </label>
+                    <button type="button" class="btn btn-sub btn-sm" id="copyFromDefaultBtn" onclick="copyDefaultToCurrentDay()">평일 기본 시간표 복사해오기</button>
+                </div>
+
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px; gap:8px; flex-wrap:wrap;">
+                    <span style="font-size:0.85rem; color:var(--text-sub);" id="scheduleStatusHint">평일 기본 시간표를 편집 중입니다.</span>
+                    <div style="display:flex; gap:6px;">
+                        <button type="button" class="btn btn-sub btn-sm" id="sortScheduleBtn" onclick="sortCurrentSchedule()">시간순 정렬</button>
+                        <button type="button" class="btn btn-sub btn-sm" id="addScheduleBtn" onclick="addScheduleRow()">+ 교시/일정 추가</button>
+                    </div>
+                </div>
+
+                <div id="scheduleList" class="row-list"></div>
+            </section>
+
+            <!-- 탭 4: 비밀번호 · 백업 -->
+            <section id="tab-security" class="panel">
+                <h2>🔐 관리자 비밀번호 변경 & 설정 백업</h2>
+                <p class="panel-desc">비밀번호는 GitHub 코드가 아니라 Google Apps Script 서버(ScriptProperties)에만 안전하게 저장됩니다.</p>
+
+                <div id="passwordChangeBox" style="padding:16px; border-radius:10px; background:var(--hover-bg); border:1px solid var(--border-color); margin-bottom:18px;">
+                    <h3 style="margin:0 0 10px; font-size:0.96rem; color:var(--accent-main);">관리자 비밀번호 변경</h3>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="newAdminPassword">새 비밀번호 (4자 이상)</label>
+                            <input type="password" id="newAdminPassword" placeholder="새 비밀번호">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmAdminPassword">새 비밀번호 확인</label>
+                            <input type="password" id="confirmAdminPassword" placeholder="다시 입력">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary btn-sm" style="margin-top:12px;" onclick="changeAdminPassword()">비밀번호 변경</button>
+                </div>
+
+                <div style="padding:16px; border-radius:10px; background:var(--hover-bg); border:1px solid var(--border-color);">
+                    <h3 style="margin:0 0 8px; font-size:0.96rem; color:var(--accent-sub);">설정 JSON 백업 · 복원 · 초기화</h3>
+                    <p style="margin:0 0 12px; font-size:0.84rem; color:var(--text-sub);">설정을 파일로 백업해 두거나, 초기 기본값으로 되돌릴 수 있습니다.</p>
+                    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+                        <button type="button" class="btn btn-sub btn-sm" onclick="exportConfigJson()">📥 설정 JSON 다운로드</button>
+                        <label class="btn btn-sub btn-sm" style="cursor:pointer;">
+                            📤 설정 JSON 불러오기
+                            <input type="file" accept=".json" style="display:none;" onchange="importConfigJson(event)">
+                        </label>
+                        <button type="button" class="btn btn-danger btn-sm" onclick="resetToDefault()">↺ 기본값으로 초기화</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- 하단 고정 저장 바 -->
+    <div id="saveBar" class="save-bar" style="display:none;">
+        <div class="save-bar-inner">
+            <span style="font-size:0.85rem; color:var(--text-sub);" id="saveBarHint">변경 후 반드시 오른쪽 저장 버튼을 눌러주세요.</span>
+            <button type="button" id="saveAllBtn" class="btn btn-primary" onclick="saveAllConfig()">💾 모든 설정 저장하기</button>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEYS = {
+            THEME: 'sj_dashboard_theme',
+            CONFIG_CACHE: 'sj_dashboard_config_cache',
+            SESSION_PIN: 'sj_admin_verified_pin'
+        };
+
+        const API_URL = (window.DASHBOARD_ENV && window.DASHBOARD_ENV.APPS_SCRIPT_URL || '').trim();
+        const IS_LOCAL_MODE = !API_URL;
+
+        let workingConfig = null;
+        let adminPin = sessionStorage.getItem(STORAGE_KEYS.SESSION_PIN) || '';
+        let activeScheduleDay = 'default';
+
+        function safeJsonParse(str, fallback) {
+            if (!str) return fallback;
+            try { return JSON.parse(str); } catch (e) { return fallback; }
+        }
+
+        function mergeConfig(base, override) {
+            const merged = JSON.parse(JSON.stringify(base || {}));
+            if (!override || typeof override !== 'object') return merged;
+            for (const key of Object.keys(override)) {
+                if (key === 'schedule' && override.schedule && typeof override.schedule === 'object') {
+                    merged.schedule = Object.assign({}, merged.schedule, override.schedule);
+                    if (override.schedule.dayOverrides) {
+                        merged.schedule.dayOverrides = Object.assign({}, merged.schedule.dayOverrides, override.schedule.dayOverrides);
+                    }
+                } else if (override[key] !== undefined && override[key] !== null) {
+                    merged[key] = override[key];
+                }
+            }
+            return merged;
+        }
+
+        let toastTimer = null;
+        function showToast(msg, isError = false) {
+            const el = document.getElementById('toast');
+            el.textContent = msg;
+            el.classList.toggle('error', isError);
+            el.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => el.classList.remove('show'), 3000);
+        }
+
+        async function apiGet(params = {}) {
+            const url = new URL(API_URL);
+            Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+            url.searchParams.set('t', String(Date.now()));
+            const res = await fetch(url.toString(), { method: 'GET', redirect: 'follow' });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await res.json();
+            if (data && data.ok === false) throw new Error(data.error || '서버 오류');
+            return data;
+        }
+
+        async function apiPost(payload) {
+            const res = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                redirect: 'follow',
+                body: JSON.stringify(payload)
+            });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await res.json();
+            if (data && data.ok === false) throw new Error(data.error || '요청 실패');
+            return data;
+        }
+
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('tab-' + tabId).classList.add('active');
+        }
+
+        // =========================================
+        // 인증 & 초기 로딩
+        // =========================================
+        async function verifyAdmin() {
+            const pin = document.getElementById('adminPinInput').value.trim();
+            const btn = document.getElementById('verifyBtn');
+            if (!pin) { showToast('비밀번호를 입력해주세요.', true); return; }
+
+            btn.disabled = true;
+            btn.textContent = '확인 중...';
+            try {
+                await apiPost({ action: 'verifyAdmin', password: pin });
+                adminPin = pin;
+                sessionStorage.setItem(STORAGE_KEYS.SESSION_PIN, pin);
+                await enterAdminApp();
+            } catch (e) {
+                showToast(e.message || '비밀번호가 일치하지 않습니다.', true);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '인증하고 들어가기';
+            }
+        }
+
+        async function enterAdminApp() {
+            document.getElementById('authScreen').style.display = 'none';
+            document.getElementById('adminApp').style.display = 'block';
+            document.getElementById('saveBar').style.display = 'flex';
+
+            if (IS_LOCAL_MODE) {
+                const cached = safeJsonParse(localStorage.getItem(STORAGE_KEYS.CONFIG_CACHE), null);
+                workingConfig = mergeConfig(window.DEFAULT_CONFIG, cached);
+                document.getElementById('passwordChangeBox').style.display = 'none';
+                document.getElementById('saveBarHint').textContent = '🧪 로컬 테스트 모드: 저장 시 이 브라우저의 대시보드에 바로 반영됩니다.';
+            } else {
+                try {
+                    const res = await apiGet({ type: 'config' });
+                    workingConfig = mergeConfig(window.DEFAULT_CONFIG, res.config || null);
+                } catch (e) {
+                    const cached = safeJsonParse(localStorage.getItem(STORAGE_KEYS.CONFIG_CACHE), null);
+                    workingConfig = mergeConfig(window.DEFAULT_CONFIG, cached);
+                    showToast('원격 설정을 불러오지 못해 캐시된 설정을 표시합니다.', true);
+                }
+            }
+            populateForms();
+        }
+
+        // =========================================
+        // 폼 채우기 & 렌더링
+        // =========================================
+        function populateForms() {
+            document.getElementById('cfgSchoolName').value = workingConfig.schoolName || '';
+            document.getElementById('cfgGradeName').value = workingConfig.gradeName || '';
+            document.getElementById('cfgClassCount').value = workingConfig.classCount ?? 8;
+            document.getElementById('cfgDinnerHour').value = workingConfig.dinnerSwitchHour ?? 14;
+            document.getElementById('cfgWeatherLabel').value = workingConfig.weatherLabel || '';
+            document.getElementById('cfgNeisOffice').value = workingConfig.neisOfficeCode || 'S10';
+            document.getElementById('cfgLat').value = workingConfig.weatherLat ?? 35.1980;
+            document.getElementById('cfgLon').value = workingConfig.weatherLon ?? 128.5599;
+
+            const sched = workingConfig.schedule || window.DEFAULT_CONFIG.schedule;
+            document.getElementById('cfgMsgBefore').value = sched.beforeMessage || '';
+            document.getElementById('cfgMsgAfter').value = sched.afterMessage || '';
+            document.getElementById('cfgMsgWeekend').value = sched.weekendMessage || '';
+
+            renderShortcutEditor();
+            updateDayTabIndicators();
+            renderScheduleEditor();
+        }
+
+        // --- 사이드바 에디터 ---
+        function renderShortcutEditor() {
+            const list = document.getElementById('shortcutList');
+            list.innerHTML = '';
+            if (!Array.isArray(workingConfig.shortcuts)) workingConfig.shortcuts = [];
+
+            workingConfig.shortcuts.forEach((item, idx) => {
+                const row = document.createElement('div');
+                row.className = 'item-row shortcut-row';
+
+                const grpSelect = document.createElement('select');
+                [1, 2, 3, 4].forEach(g => {
+                    const opt = document.createElement('option');
+                    opt.value = g;
+                    opt.textContent = `그룹 ${g}`;
+                    if (Number(item.group) === g) opt.selected = true;
+                    grpSelect.appendChild(opt);
+                });
+                grpSelect.onchange = (e) => { workingConfig.shortcuts[idx].group = Number(e.target.value); };
+
+                const iconInput = document.createElement('input');
+                iconInput.type = 'text';
+                iconInput.value = item.icon || '🔗';
+                iconInput.placeholder = '아이콘';
+                iconInput.style.textAlign = 'center';
+                iconInput.oninput = (e) => { workingConfig.shortcuts[idx].icon = e.target.value; };
+
+                const titleInput = document.createElement('input');
+                titleInput.type = 'text';
+                titleInput.value = item.title || '';
+                titleInput.placeholder = '메뉴 이름';
+                titleInput.oninput = (e) => { workingConfig.shortcuts[idx].title = e.target.value; };
+
+                const urlInput = document.createElement('input');
+                urlInput.type = 'text';
+                urlInput.dataset.field = 'url';
+                urlInput.value = item.url || '';
+                urlInput.placeholder = 'https://...';
+                urlInput.oninput = (e) => { workingConfig.shortcuts[idx].url = e.target.value; };
+
+                const actions = document.createElement('div');
+                actions.className = 'row-actions';
+
+                const upBtn = document.createElement('button');
+                upBtn.type = 'button'; upBtn.className = 'btn btn-sub btn-sm'; upBtn.textContent = '▲';
+                upBtn.disabled = idx === 0;
+                upBtn.onclick = () => moveShortcut(idx, -1);
+
+                const downBtn = document.createElement('button');
+                downBtn.type = 'button'; downBtn.className = 'btn btn-sub btn-sm'; downBtn.textContent = '▼';
+                downBtn.disabled = idx === workingConfig.shortcuts.length - 1;
+                downBtn.onclick = () => moveShortcut(idx, 1);
+
+                const delBtn = document.createElement('button');
+                delBtn.type = 'button'; delBtn.className = 'btn btn-danger btn-sm'; delBtn.textContent = '삭제';
+                delBtn.onclick = () => { workingConfig.shortcuts.splice(idx, 1); renderShortcutEditor(); };
+
+                actions.append(upBtn, downBtn, delBtn);
+                row.append(grpSelect, iconInput, titleInput, urlInput, actions);
+                list.appendChild(row);
+            });
+        }
+
+        function addShortcutRow() {
+            const lastGrp = workingConfig.shortcuts.length > 0 ? workingConfig.shortcuts[workingConfig.shortcuts.length - 1].group : 1;
+            workingConfig.shortcuts.push({ group: lastGrp, icon: '🔗', title: '', url: '' });
+            renderShortcutEditor();
+        }
+
+        function moveShortcut(idx, delta) {
+            const target = idx + delta;
+            if (target < 0 || target >= workingConfig.shortcuts.length) return;
+            const temp = workingConfig.shortcuts[idx];
+            workingConfig.shortcuts[idx] = workingConfig.shortcuts[target];
+            workingConfig.shortcuts[target] = temp;
+            renderShortcutEditor();
+        }
+
+        // --- 일과표 에디터 ---
+        const DAY_NAMES = { '1': '월요일', '2': '화요일', '3': '수요일', '4': '목요일', '5': '금요일' };
+
+        function selectScheduleDay(dayKey) {
+            activeScheduleDay = dayKey;
+            document.querySelectorAll('.day-tab').forEach(btn => {
+                btn.classList.toggle('active', btn.dataset.day === dayKey);
+            });
+            renderScheduleEditor();
+        }
+
+        function updateDayTabIndicators() {
+            const overrides = workingConfig.schedule?.dayOverrides || {};
+            document.querySelectorAll('.day-tab').forEach(btn => {
+                const d = btn.dataset.day;
+                if (d === 'default') return;
+                const active = Array.isArray(overrides[d]) && overrides[d].length > 0;
+                btn.classList.toggle('has-override', active);
+            });
+        }
+
+        function getActiveScheduleArray() {
+            if (activeScheduleDay === 'default') {
+                if (!Array.isArray(workingConfig.schedule.defaultWeekday)) workingConfig.schedule.defaultWeekday = [];
+                return workingConfig.schedule.defaultWeekday;
+            }
+            const ov = workingConfig.schedule.dayOverrides[activeScheduleDay];
+            return Array.isArray(ov) ? ov : null;
+        }
+
+        function toggleDayOverride(enabled) {
+            if (activeScheduleDay === 'default') return;
+            if (enabled) {
+                workingConfig.schedule.dayOverrides[activeScheduleDay] = JSON.parse(JSON.stringify(workingConfig.schedule.defaultWeekday || []));
+            } else {
+                workingConfig.schedule.dayOverrides[activeScheduleDay] = null;
+            }
+            updateDayTabIndicators();
+            renderScheduleEditor();
+        }
+
+        function copyDefaultToCurrentDay() {
+            if (activeScheduleDay === 'default') return;
+            workingConfig.schedule.dayOverrides[activeScheduleDay] = JSON.parse(JSON.stringify(workingConfig.schedule.defaultWeekday || []));
+            updateDayTabIndicators();
+            renderScheduleEditor();
+            showToast('평일 기본 시간표를 복사했습니다.');
+        }
+
+        function renderScheduleEditor() {
+            const list = document.getElementById('scheduleList');
+            const overrideBar = document.getElementById('overrideBar');
+            const hint = document.getElementById('scheduleStatusHint');
+            const addBtn = document.getElementById('addScheduleBtn');
+            const sortBtn = document.getElementById('sortScheduleBtn');
+            list.innerHTML = '';
+
+            if (activeScheduleDay === 'default') {
+                overrideBar.style.display = 'none';
+                hint.textContent = '평일 기본 시간표(월~금 공통)를 편집 중입니다.';
+                addBtn.disabled = false;
+                sortBtn.disabled = false;
+            } else {
+                overrideBar.style.display = 'flex';
+                const dayLabel = DAY_NAMES[activeScheduleDay];
+                const hasOverride = Array.isArray(workingConfig.schedule.dayOverrides[activeScheduleDay]);
+                document.getElementById('useDayOverrideCheck').checked = hasOverride;
+                document.getElementById('overrideLabelText').textContent = `${dayLabel}은 별도 시간표 사용`;
+                document.getElementById('copyFromDefaultBtn').style.display = hasOverride ? 'inline-flex' : 'none';
+                addBtn.disabled = !hasOverride;
+                sortBtn.disabled = !hasOverride;
+
+                if (!hasOverride) {
+                    hint.textContent = `${dayLabel}은 현재 '평일 기본 시간표'를 따릅니다.`;
+                    list.innerHTML = '<div style="text-align:center; padding:26px; color:var(--text-sub); font-size:0.9rem;">위 체크박스를 켜면 이 요일만의 별도 시간표를 설정할 수 있습니다.</div>';
+                    return;
+                }
+                hint.textContent = `${dayLabel} 전용 시간표를 편집 중입니다.`;
+            }
+
+            const arr = getActiveScheduleArray() || [];
+            arr.forEach((slot, idx) => {
+                const row = document.createElement('div');
+                row.className = 'item-row schedule-row';
+
+                const startInput = document.createElement('input');
+                startInput.type = 'time';
+                startInput.value = slot.start || '08:30';
+                startInput.onchange = (e) => { arr[idx].start = e.target.value; };
+
+                const endInput = document.createElement('input');
+                endInput.type = 'time';
+                endInput.value = slot.end || '09:20';
+                endInput.onchange = (e) => { arr[idx].end = e.target.value; };
+
+                const labelInput = document.createElement('input');
+                labelInput.type = 'text';
+                labelInput.dataset.field = 'label';
+                labelInput.value = slot.label || '';
+                labelInput.placeholder = '예: 현재 1교시 수업 중입니다.';
+                labelInput.oninput = (e) => { arr[idx].label = e.target.value; };
+
+                const actions = document.createElement('div');
+                actions.className = 'row-actions';
+                const delBtn = document.createElement('button');
+                delBtn.type = 'button'; delBtn.className = 'btn btn-danger btn-sm'; delBtn.textContent = '삭제';
+                delBtn.onclick = () => { arr.splice(idx, 1); renderScheduleEditor(); };
+
+                actions.appendChild(delBtn);
+                row.append(startInput, endInput, labelInput, actions);
+                list.appendChild(row);
+            });
+        }
+
+        function addScheduleRow() {
+            const arr = getActiveScheduleArray();
+            if (!arr) return;
+            const lastEnd = arr.length > 0 ? arr[arr.length - 1].end : '08:30';
+            arr.push({ start: lastEnd, end: lastEnd, label: '' });
+            renderScheduleEditor();
+        }
+
+        function sortCurrentSchedule() {
+            const arr = getActiveScheduleArray();
+            if (!arr) return;
+            arr.sort((a, b) => String(a.start || '').localeCompare(String(b.start || '')));
+            renderScheduleEditor();
+            showToast('시작 시간 순으로 정렬했습니다.');
+        }
+
+        // =========================================
+        // 저장 · 비밀번호 변경 · 백업/복원
+        // =========================================
+        function collectConfigFromForms() {
+            workingConfig.schoolName = document.getElementById('cfgSchoolName').value.trim() || '성지여자고등학교';
+            workingConfig.gradeName = document.getElementById('cfgGradeName').value.trim() || '3학년부';
+            workingConfig.classCount = Math.max(1, Math.min(20, Number(document.getElementById('cfgClassCount').value) || 8));
+            workingConfig.dinnerSwitchHour = Math.max(10, Math.min(20, Number(document.getElementById('cfgDinnerHour').value) || 14));
+            workingConfig.weatherLabel = document.getElementById('cfgWeatherLabel').value.trim() || '창원(마산) 날씨';
+            workingConfig.neisOfficeCode = document.getElementById('cfgNeisOffice').value.trim() || 'S10';
+            workingConfig.weatherLat = Number(document.getElementById('cfgLat').value) || 35.1980;
+            workingConfig.weatherLon = Number(document.getElementById('cfgLon').value) || 128.5599;
+
+            workingConfig.schedule.beforeMessage = document.getElementById('cfgMsgBefore').value.trim();
+            workingConfig.schedule.afterMessage = document.getElementById('cfgMsgAfter').value.trim();
+            workingConfig.schedule.weekendMessage = document.getElementById('cfgMsgWeekend').value.trim();
+
+            // 빈 항목 정리
+            workingConfig.shortcuts = (workingConfig.shortcuts || []).filter(s => (s.title || '').trim() || (s.url || '').trim());
+            workingConfig.schedule.defaultWeekday = (workingConfig.schedule.defaultWeekday || []).filter(s => s.start && s.end && (s.label || '').trim());
+            Object.keys(workingConfig.schedule.dayOverrides || {}).forEach(k => {
+                const ov = workingConfig.schedule.dayOverrides[k];
+                if (Array.isArray(ov)) {
+                    workingConfig.schedule.dayOverrides[k] = ov.filter(s => s.start && s.end && (s.label || '').trim());
+                }
+            });
+
+            return workingConfig;
+        }
+
+        async function saveAllConfig() {
+            const btn = document.getElementById('saveAllBtn');
+            const cfg = collectConfigFromForms();
+
+            if (IS_LOCAL_MODE) {
+                localStorage.setItem(STORAGE_KEYS.CONFIG_CACHE, JSON.stringify(cfg));
+                showToast('설정이 저장되었습니다! (로컬 테스트 모드)');
+                return;
+            }
+
+            btn.disabled = true;
+            btn.textContent = '저장 중...';
+            try {
+                await apiPost({ action: 'saveConfig', password: adminPin, config: cfg });
+                localStorage.setItem(STORAGE_KEYS.CONFIG_CACHE, JSON.stringify(cfg));
+                showToast('구글 시트에 모든 설정이 저장되었습니다!');
+            } catch (e) {
+                showToast('저장 실패: ' + e.message, true);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = '💾 모든 설정 저장하기';
+            }
+        }
+
+        async function changeAdminPassword() {
+            const p1 = document.getElementById('newAdminPassword').value.trim();
+            const p2 = document.getElementById('confirmAdminPassword').value.trim();
+            if (p1.length < 4) { showToast('비밀번호는 4자 이상으로 설정해주세요.', true); return; }
+            if (p1 !== p2) { showToast('새 비밀번호가 서로 일치하지 않습니다.', true); return; }
+
+            try {
+                await apiPost({ action: 'changeAdminPassword', password: adminPin, newPassword: p1 });
+                adminPin = p1;
+                sessionStorage.setItem(STORAGE_KEYS.SESSION_PIN, p1);
+                document.getElementById('newAdminPassword').value = '';
+                document.getElementById('confirmAdminPassword').value = '';
+                showToast('관리자 비밀번호가 변경되었습니다.');
+            } catch (e) {
+                showToast('비밀번호 변경 실패: ' + e.message, true);
+            }
+        }
+
+        function exportConfigJson() {
+            const cfg = collectConfigFromForms();
+            const blob = new Blob([JSON.stringify(cfg, null, 2)], { type: 'application/json' });
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = `sungji-dashboard-config-${new Date().toISOString().slice(0,10)}.json`;
+            a.click();
+            URL.revokeObjectURL(a.href);
+        }
+
+        function importConfigJson(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                const parsed = safeJsonParse(e.target.result, null);
+                if (!parsed || typeof parsed !== 'object') {
+                    showToast('올바른 JSON 설정 파일이 아닙니다.', true);
+                    return;
+                }
+                workingConfig = mergeConfig(window.DEFAULT_CONFIG, parsed);
+                populateForms();
+                showToast('설정을 불러왔습니다. 하단 저장 버튼을 눌러 확정하세요.');
+            };
+            reader.readAsText(file);
+            event.target.value = '';
+        }
+
+        function resetToDefault() {
+            if (!confirm('모든 설정을 초기 기본값으로 되돌리시겠습니까? (저장 버튼을 눌러야 최종 반영됩니다)')) return;
+            workingConfig = JSON.parse(JSON.stringify(window.DEFAULT_CONFIG));
+            populateForms();
+            showToast('기본값으로 되돌렸습니다. 저장 버튼을 눌러 반영하세요.');
+        }
+
+        // =========================================
+        // 페이지 시작
+        // =========================================
+        document.addEventListener('DOMContentLoaded', async () => {
+            const savedTheme = localStorage.getItem(STORAGE_KEYS.THEME) || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+
+            const badge = document.getElementById('envModeBadge');
+            if (IS_LOCAL_MODE) {
+                badge.textContent = '🧪 로컬 테스트 모드';
+                await enterAdminApp();
+            } else {
+                badge.textContent = '🟢 구글 시트 연동됨';
+                if (adminPin) {
+                    try {
+                        await apiPost({ action: 'verifyAdmin', password: adminPin });
+                        await enterAdminApp();
+                        return;
+                    } catch (e) {
+                        sessionStorage.removeItem(STORAGE_KEYS.SESSION_PIN);
+                        adminPin = '';
+                    }
+                }
+                document.getElementById('authScreen').style.display = 'block';
+                setTimeout(() => document.getElementById('adminPinInput').focus(), 50);
+            }
+        });
+    </script>
+</body>
+</html>

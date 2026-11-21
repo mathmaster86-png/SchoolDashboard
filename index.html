@@ -1,0 +1,1680 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title id="pageTitle">성지여자고등학교 학년부 대시보드</title>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    <script src="./config.js"></script>
+    <style>
+        /* ========================================= */
+        /* 🌙 1. 다크 테마 (기본값 - 세련된 블랙) */
+        /* ========================================= */
+        :root[data-theme="dark"] {
+            --bg-color: #121212; --card-bg: #1e1e1e; --text-main: #ffffff; --text-sub: #b3b3b3;
+            --accent-main: #00D2B4; --accent-sub: #D1B280; --accent-red: #FF6B6B;
+            --input-bg: rgba(0,0,0,0.25); --input-border: rgba(255,255,255,0.12);
+            --border-color: rgba(255,255,255,0.06); --border-color-strong: rgba(255,255,255,0.12);
+            --hover-bg: rgba(255, 255, 255, 0.05); --box-bg: rgba(0, 0, 0, 0.22); --card-shadow: rgba(0, 0, 0, 0.3);
+            --notice-today-bg: rgba(0, 210, 180, 0.1); --notice-today-border: rgba(0, 210, 180, 0.3); --notice-past-bg: rgba(0, 0, 0, 0.15);
+            --dday-today-bg: rgba(255, 107, 107, 0.12); --dday-today-border: var(--accent-red);
+            --dday-archive-bg: rgba(0, 0, 0, 0.3); --dday-archive-border: #555;
+            --class-off-bg: rgba(255,255,255,0.1); --class-off-text: var(--text-sub);
+            --class-on-text: #000; --class-on-shadow: rgba(0, 210, 180, 0.5);
+            --period-bg: rgba(209, 178, 128, 0.15); --period-border: rgba(209, 178, 128, 0.3);
+            --modal-overlay: rgba(0,0,0,0.8); --modal-shadow: rgba(0,0,0,0.5); --btn-text: #000;
+            --cancel-btn-bg: #444; --cancel-btn-text: #fff; --color-scheme: dark;
+            --group1-color: #90CAF9; --group2-color: var(--accent-sub); --group3-color: #CE93D8; --group4-color: #A5D6A7;
+        }
+
+        /* ========================================= */
+        /* 🌸 2. 벚꽃 테마 (화사한 핑크) */
+        /* ========================================= */
+        :root[data-theme="blossom"] {
+            --bg-color: #FFF0F5; --card-bg: #FFFFFF; --text-main: #4A3B3C; --text-sub: #8B7D7E;
+            --accent-main: #FF8FAB; --accent-sub: #E07A3F; --accent-red: #FF5252;
+            --input-bg: #FFF9FA; --input-border: #FFD1DC;
+            --border-color: #FFD1DC; --border-color-strong: #FFB6C1;
+            --hover-bg: #FFE4EB; --box-bg: #FFF9FA; --card-shadow: rgba(255, 182, 193, 0.25);
+            --notice-today-bg: #FFF0F5; --notice-today-border: var(--accent-main); --notice-past-bg: var(--input-bg);
+            --dday-today-bg: #FFF0F5; --dday-today-border: var(--accent-red);
+            --dday-archive-bg: #F5F5F5; --dday-archive-border: #BDBDBD;
+            --class-off-bg: #F0E6E8; --class-off-text: #A09395;
+            --class-on-text: #ffffff; --class-on-shadow: rgba(255, 143, 171, 0.6);
+            --period-bg: #FFF6EE; --period-border: var(--accent-sub);
+            --modal-overlay: rgba(0,0,0,0.5); --modal-shadow: rgba(255, 143, 171, 0.3); --btn-text: #ffffff;
+            --cancel-btn-bg: #F0E6E8; --cancel-btn-text: var(--text-main); --color-scheme: light;
+            --group1-color: #1976D2; --group2-color: #D86A2E; --group3-color: #8E24AA; --group4-color: #2E7D32;
+        }
+
+        /* ========================================= */
+        /* ☁️ 3. 스카이 테마 (밝고 산뜻한 블루) */
+        /* ========================================= */
+        :root[data-theme="sky"] {
+            --bg-color: #F0F8FF; --card-bg: #FFFFFF; --text-main: #1E293B; --text-sub: #64748B;
+            --accent-main: #0EA5E9; --accent-sub: #D97706; --accent-red: #EF4444;
+            --input-bg: #F8FAFC; --input-border: #E2E8F0;
+            --border-color: #E2E8F0; --border-color-strong: #CBD5E1;
+            --hover-bg: #F1F5F9; --box-bg: #F8FAFC; --card-shadow: rgba(14, 165, 233, 0.1);
+            --notice-today-bg: #E0F2FE; --notice-today-border: var(--accent-main); --notice-past-bg: var(--input-bg);
+            --dday-today-bg: #FEE2E2; --dday-today-border: var(--accent-red);
+            --dday-archive-bg: #F1F5F9; --dday-archive-border: #94A3B8;
+            --class-off-bg: #E2E8F0; --class-off-text: #64748B;
+            --class-on-text: #ffffff; --class-on-shadow: rgba(14, 165, 233, 0.4);
+            --period-bg: #FEF3C7; --period-border: var(--accent-sub);
+            --modal-overlay: rgba(0,0,0,0.5); --modal-shadow: rgba(14, 165, 233, 0.2); --btn-text: #ffffff;
+            --cancel-btn-bg: #E2E8F0; --cancel-btn-text: var(--text-main); --color-scheme: light;
+            --group1-color: #0284C7; --group2-color: #D97706; --group3-color: #7C3AED; --group4-color: #16A34A;
+        }
+
+        /* ========================================= */
+        /* 💻 4. 모던 테마 (단정하고 깔끔한 차콜) */
+        /* ========================================= */
+        :root[data-theme="modern"] {
+            --bg-color: #202124; --card-bg: #2D2E31; --text-main: #E8EAED; --text-sub: #9AA0A6;
+            --accent-main: #8AB4F8; --accent-sub: #FDE293; --accent-red: #F28B82;
+            --input-bg: #202124; --input-border: #5F6368;
+            --border-color: #3C4043; --border-color-strong: #5F6368;
+            --hover-bg: #3C4043; --box-bg: #303134; --card-shadow: rgba(0, 0, 0, 0.4);
+            --notice-today-bg: rgba(138, 180, 248, 0.15); --notice-today-border: var(--accent-main); --notice-past-bg: var(--bg-color);
+            --dday-today-bg: rgba(242, 139, 130, 0.15); --dday-today-border: var(--accent-red);
+            --dday-archive-bg: #202124; --dday-archive-border: #5F6368;
+            --class-off-bg: #3C4043; --class-off-text: var(--text-sub);
+            --class-on-text: #202124; --class-on-shadow: rgba(138, 180, 248, 0.5);
+            --period-bg: rgba(253, 226, 147, 0.1); --period-border: var(--accent-sub);
+            --modal-overlay: rgba(0,0,0,0.7); --modal-shadow: rgba(0,0,0,0.5); --btn-text: #202124;
+            --cancel-btn-bg: #5F6368; --cancel-btn-text: var(--text-main); --color-scheme: dark;
+            --group1-color: #8AB4F8; --group2-color: #FDE293; --group3-color: #D7AEFB; --group4-color: #81C995;
+        }
+
+        /* ========================================= */
+        /* 🌿 5. 포레스트 테마 (눈이 편안한 아이보리&그린) */
+        /* ========================================= */
+        :root[data-theme="forest"] {
+            --bg-color: #F4F7F4; --card-bg: #FFFFFF; --text-main: #2C3E2D; --text-sub: #7A8B7B;
+            --accent-main: #4CAF50; --accent-sub: #E67E22; --accent-red: #E53935;
+            --input-bg: #F9FCF9; --input-border: #C8E6C9;
+            --border-color: #E8EFE8; --border-color-strong: #A5D6A7;
+            --hover-bg: #E8F5E9; --box-bg: #F4F9F4; --card-shadow: rgba(76, 175, 80, 0.15);
+            --notice-today-bg: #E8F5E9; --notice-today-border: var(--accent-main); --notice-past-bg: var(--input-bg);
+            --dday-today-bg: #FFEBEE; --dday-today-border: var(--accent-red);
+            --dday-archive-bg: #F0F0F0; --dday-archive-border: #BDBDBD;
+            --class-off-bg: #E0EBE0; --class-off-text: #7A8B7B;
+            --class-on-text: #ffffff; --class-on-shadow: rgba(76, 175, 80, 0.4);
+            --period-bg: #FFF3E0; --period-border: var(--accent-sub);
+            --modal-overlay: rgba(0,0,0,0.5); --modal-shadow: rgba(76, 175, 80, 0.2); --btn-text: #ffffff;
+            --cancel-btn-bg: #E0EBE0; --cancel-btn-text: var(--text-main); --color-scheme: light;
+            --group1-color: #1976D2; --group2-color: #E67E22; --group3-color: #8E24AA; --group4-color: #2E7D32;
+        }
+
+        body, input, textarea, button { font-family: 'Pretendard', 'Malgun Gothic', sans-serif; margin: 0; }
+        body { padding: 15px 20px; background-color: var(--bg-color); color: var(--text-main); height: 100vh; box-sizing: border-box; display: flex; flex-direction: column; overflow: hidden; transition: background-color 0.3s; }
+
+        .main-wrapper { display: flex; gap: 15px; width: 100%; max-width: 1400px; margin: 0 auto; height: 100%; min-height: 600px; flex-grow: 1; }
+
+        .mobile-header { display: none; align-items: center; justify-content: space-between; padding: 10px 15px; background: var(--card-bg); border-bottom: 1px solid var(--border-color-strong); border-radius: 12px; margin-bottom: 12px; box-shadow: 0 4px 6px var(--card-shadow); flex-shrink: 0; }
+        .mobile-header-title { font-weight: bold; color: var(--accent-main); font-size: 1.05rem; }
+        .hamburger-btn { background: transparent; border: none; color: var(--text-main); font-size: 1.5rem; cursor: pointer; padding: 5px; display: flex; align-items: center; }
+
+        .sidebar { width: 220px; background-color: var(--card-bg); border-radius: 16px; padding: 18px; box-shadow: 0 8px 16px var(--card-shadow); display: flex; flex-direction: column; gap: 6px; flex-shrink: 0; border: 1px solid var(--border-color); overflow-y: auto; transition: background-color 0.3s, border-color 0.3s, left 0.3s ease; }
+        .sidebar-backdrop { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 998; }
+
+        .sidebar-header-wrap { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color-strong); padding-bottom: 10px; margin-bottom: 5px; flex-shrink: 0; }
+        .sidebar-title { font-size: 1.02rem; font-weight: bold; color: var(--accent-main); margin: 0; }
+
+        .theme-toggle-btn { background: var(--input-bg); border: 1px solid var(--input-border); color: var(--text-main); font-size: 0.78rem; font-weight: bold; border-radius: 20px; padding: 4px 10px; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
+        .theme-toggle-btn:hover { transform: scale(1.05); border-color: var(--accent-main); }
+
+        .search-container { display: flex; gap: 6px; margin-bottom: 4px; flex-shrink: 0; }
+        .search-input { flex-grow: 1; background: var(--input-bg); color: var(--text-main); border: 1px solid var(--input-border); border-radius: 8px; padding: 8px 10px; font-size: 0.85rem; outline: none; width: 100%; box-sizing: border-box; transition: border-color 0.2s; }
+        .search-input::placeholder { color: var(--text-sub); font-weight: 600; }
+        .search-input:focus { border-color: var(--accent-main); }
+        .search-btn { background: var(--accent-main); color: var(--btn-text); border: none; border-radius: 8px; padding: 0 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; flex-shrink: 0; }
+        .search-btn:hover { transform: scale(1.05); }
+
+        #sidebarLinks { display: flex; flex-direction: column; gap: 6px; flex-grow: 1; }
+        .shortcut-btn { display: flex; align-items: center; gap: 10px; padding: 9px 12px; background: var(--hover-bg); border-radius: 8px; text-decoration: none; color: inherit; font-weight: bold; font-size: 0.88rem; transition: all 0.2s ease; flex-shrink: 0; border: 1px solid transparent; }
+        .shortcut-icon { font-size: 1.02rem; flex-shrink: 0; }
+        .shortcut-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        .shortcut-btn.group-1 { color: var(--group1-color); }
+        .shortcut-btn.group-2 { color: var(--group2-color); }
+        .shortcut-btn.group-3 { color: var(--group3-color); }
+        .shortcut-btn.group-4 { color: var(--group4-color); }
+        .shortcut-btn:hover { background: var(--input-bg); border-color: var(--border-color-strong); transform: translateY(-2px); }
+
+        .menu-divider { border-top: 1px dashed var(--border-color-strong); margin: 3px 0; flex-shrink: 0; }
+
+        .dashboard-container { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 3.5fr 6.5fr; gap: 15px; flex-grow: 1; min-width: 0; }
+        .card { background-color: var(--card-bg); border-radius: 16px; padding: 18px 20px; box-shadow: 0 8px 16px var(--card-shadow); display: flex; flex-direction: column; border: 1px solid var(--border-color); overflow: hidden; transition: background-color 0.3s, border-color 0.3s; min-width: 0; }
+
+        .card-header { font-size: 1.12rem; font-weight: bold; color: var(--accent-main); margin-bottom: 10px; border-bottom: 1px solid var(--border-color-strong); padding-bottom: 8px; display: flex; justify-content: space-between; align-items: center; flex-shrink: 0; gap: 8px; }
+        .card-header-actions { display: flex; gap: 8px; align-items: center; }
+
+        .grade-badge { font-size: 0.8rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: var(--notice-today-bg); color: var(--accent-main); border: 1px solid var(--notice-today-border); white-space: nowrap; }
+        .mode-badge { font-size: 0.72rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; background: var(--period-bg); color: var(--accent-sub); border: 1px solid var(--period-border); white-space: nowrap; display: none; }
+        .mode-badge.visible { display: inline-flex; align-items: center; gap: 4px; }
+
+        .filter-input { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--input-border); border-radius: 6px; padding: 4px 8px; font-size: 0.8rem; outline: none; transition: 0.2s; width: 100px; }
+        .filter-input:focus { border-color: var(--accent-sub); width: 140px; }
+
+        .primary-btn { background: var(--accent-main); color: var(--btn-text); border: none; border-radius: 6px; padding: 6px 12px; font-size: 0.85rem; font-weight: bold; cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 4px; }
+        .primary-btn:hover { transform: scale(1.04); }
+        .primary-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+
+        .card-1 { grid-area: 1 / 1 / 2 / 2; overflow-y: auto !important; }
+        .card-4 { grid-area: 1 / 2 / 2 / 3; }
+        .card-3 { grid-area: 2 / 1 / 3 / 2; }
+        .card-2 { grid-area: 2 / 2 / 3 / 3; }
+
+        .date-display { font-size: 1.02rem; color: var(--accent-main); text-align: center; font-weight: bold; letter-spacing: 0.5px; }
+        .time-display { font-size: 3.1rem; font-weight: bold; text-align: center; color: var(--accent-sub); letter-spacing: 2px; margin: 4px 0; line-height: 1.05; }
+        .weather-display { font-size: 0.88rem; text-align: center; color: var(--text-main); margin-bottom: 8px; font-weight: 500; }
+
+        .lunch-box { background: var(--box-bg); border: 1px solid var(--border-color); padding: 10px 12px; border-radius: 10px; text-align: center; }
+        .lunch-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; gap: 8px; }
+        .lunch-title { font-size: 0.84rem; color: var(--accent-main); font-weight: bold; text-align: left; }
+        .meal-toggle { display: inline-flex; background: var(--input-bg); border: 1px solid var(--input-border); border-radius: 7px; padding: 2px; gap: 2px; flex-shrink: 0; }
+        .meal-btn { border: none; background: transparent; color: var(--text-sub); font-size: 0.76rem; font-weight: 700; padding: 3px 9px; border-radius: 5px; cursor: pointer; transition: 0.2s; }
+        .meal-btn:hover { color: var(--text-main); }
+        .meal-btn.active { background: var(--accent-main); color: var(--btn-text); }
+        .lunch-menu { font-size: 0.84rem; line-height: 1.45; word-break: keep-all; color: var(--text-main); min-height: 1.45em; }
+
+        /* ========================================= */
+        /* 📝 포스트잇 메모장 CSS */
+        /* ========================================= */
+        .memo-container { display: flex; gap: 14px; height: 100%; min-height: 190px; }
+        .post-it { flex: 1; display: flex; flex-direction: column; padding: 14px; border-radius: 2px 2px 15px 2px; position: relative; color: #333; min-width: 0; }
+        .post-it.yellow { background: linear-gradient(135deg, #fdfd96 82%, #fcfc88 100%); box-shadow: 3px 3px 10px rgba(0,0,0,0.2); }
+        .post-it.pink { background: linear-gradient(135deg, #ffb7b2 82%, #ffa19c 100%); box-shadow: 3px 3px 10px rgba(0,0,0,0.2); }
+        .post-it-title { font-weight: 800; margin-bottom: 8px; border-bottom: 1px dashed rgba(0,0,0,0.2); padding-bottom: 5px; font-size: 0.92rem; display: flex; justify-content: space-between; align-items: center; color: #222; }
+        .post-it textarea { flex-grow: 1; background: transparent; border: none; outline: none; resize: none; color: #222; font-size: 0.92rem; line-height: 1.6; }
+        .post-it textarea::placeholder { color: rgba(0,0,0,0.5); font-weight: 500; }
+
+        .checklist-input-wrap { display: flex; gap: 5px; margin-bottom: 8px; }
+        .checklist-input-wrap input[type="text"] { flex-grow: 1; min-width: 0; background: rgba(255,255,255,0.75) !important; border: 1px solid rgba(0,0,0,0.2) !important; border-radius: 4px; padding: 6px 8px; font-size: 0.84rem; color: #222 !important; outline: none; }
+        .checklist-input-wrap input[type="text"]::placeholder { color: rgba(0,0,0,0.5) !important; font-weight: bold; }
+        .checklist-input-wrap input[type="text"]:focus { background: rgba(255,255,255,0.95) !important; border-color: #ff8fab !important; }
+        .checklist-input-wrap button { background: rgba(0,0,0,0.15); border: none; border-radius: 4px; padding: 4px 9px; font-size: 0.8rem; font-weight: bold; cursor: pointer; color: #222; transition: 0.2s; flex-shrink: 0; }
+        .checklist-input-wrap button:hover { background: rgba(0,0,0,0.25); }
+
+        .checklist-items { display: flex; flex-direction: column; gap: 4px; overflow-y: auto; flex-grow: 1; padding-right: 4px; min-height: 0; }
+        .checklist-item { display: flex; align-items: flex-start; justify-content: space-between; padding: 4px 0; border-bottom: 1px dashed rgba(0,0,0,0.1); gap: 6px; }
+        .checklist-item.checked .text { text-decoration: line-through; color: rgba(0,0,0,0.4); }
+        .checklist-item .text { flex-grow: 1; font-size: 0.88rem; cursor: pointer; word-break: break-word; line-height: 1.4; margin-top: 1px; color: #222; }
+        .checklist-item input[type="checkbox"] { margin: 0; margin-top: 3px; cursor: pointer; flex-shrink: 0; }
+        .checklist-item input[type="text"].edit-input { flex-grow: 1; min-width: 0; background: rgba(255,255,255,0.85) !important; border: 1px solid rgba(0,0,0,0.25) !important; border-radius: 4px; padding: 2px 5px; font-size: 0.88rem; color: #222 !important; outline: none; }
+        .checklist-actions { display: flex; gap: 2px; flex-shrink: 0; }
+        .cl-btn { background: none; border: none; cursor: pointer; opacity: 0.55; font-size: 0.82rem; padding: 2px; display: flex; align-items: center; justify-content: center; }
+        .cl-btn:hover { opacity: 1; transform: scale(1.1); }
+
+        /* ========================================= */
+        /* 📢 전달사항 & 🏫 D-Day */
+        /* ========================================= */
+        #noticeBoard { flex-grow: 1; overflow-y: auto; padding-right: 5px; min-height: 0; }
+        .section-title { font-size: 0.88rem; font-weight: bold; color: var(--accent-sub); margin-bottom: 6px; margin-top: 12px; display: flex; align-items: center; gap: 5px; }
+        .section-title:first-child { margin-top: 0; }
+        .section-divider { border-top: 1px dashed var(--border-color-strong); margin: 12px 0 10px 0; }
+
+        .notice-item { position: relative; border-radius: 8px; padding: 13px 62px 13px 14px; margin-bottom: 10px; }
+        .notice-item.today { background: var(--notice-today-bg); border: 1px solid var(--notice-today-border); }
+        .notice-item.past { background: var(--notice-past-bg); border: 1px solid var(--border-color); }
+        .notice-time { font-size: 0.75rem; color: var(--text-sub); display: block; margin-bottom: 4px; font-weight: bold; }
+        .notice-text { font-size: 0.94rem; line-height: 1.5; color: var(--text-main); word-break: break-word; }
+
+        .d-day-box { background: var(--box-bg); padding: 11px 14px; border-radius: 8px; display: flex; flex-direction: column; justify-content: center; gap: 6px; margin-bottom: 8px; font-size: 0.98rem; border: 1px solid var(--border-color); border-left: 4px solid var(--accent-main); transition: all 0.25s; }
+        .d-day-box.dday-today { background: var(--dday-today-bg); border-color: var(--dday-today-border); border-left: 4px solid var(--accent-red); }
+        .d-day-box.archived { border-left: 4px solid var(--dday-archive-border); background: var(--dday-archive-bg); border-color: var(--border-color); }
+        .accent-text { color: var(--accent-red); font-weight: bold; margin-right: 8px; white-space: nowrap; }
+
+        .class-check-wrap { display: flex; gap: 6px; margin-top: 2px; flex-wrap: wrap; }
+        .class-btn { width: 23px; height: 23px; border-radius: 50%; border: none; font-size: 0.74rem; font-weight: bold; cursor: pointer; transition: 0.2s; display: flex; align-items: center; justify-content: center; padding: 0; }
+        .class-btn.off { background: var(--class-off-bg); color: var(--class-off-text); }
+        .class-btn.on { background: var(--accent-main); color: var(--class-on-text); box-shadow: 0 0 6px var(--class-on-shadow); }
+        .class-btn:hover { transform: scale(1.15); }
+
+        .period-notifier { font-size: 1.04rem; font-weight: bold; text-align: center; padding: 8px 10px; background: var(--period-bg); color: var(--accent-sub); border-radius: 8px; margin-bottom: 12px; border: 1px dashed var(--period-border); flex-shrink: 0; }
+
+        .action-btn { background: none; border: none; cursor: pointer; opacity: 0.65; transition: 0.2s; padding: 2px; margin-left: 3px; color: var(--text-sub); display: flex; align-items: center; justify-content: center; }
+        .action-btn:hover { opacity: 1; transform: scale(1.15); }
+        .action-btn.edit-btn:hover { color: var(--accent-main); }
+        .action-btn.delete-btn:hover { color: var(--accent-red); }
+        .action-btn.archive-btn:hover { color: #64B5F6; }
+        .refresh-btn { background: none; border: none; color: inherit; cursor: pointer; display: flex; align-items: center; justify-content: center; opacity: 0.65; transition: transform 0.4s ease, opacity 0.2s; padding: 0; }
+        .refresh-btn:hover { opacity: 1; transform: rotate(180deg); color: var(--accent-main); }
+        .d-day-actions { display: flex; align-items: center; flex-shrink: 0; }
+
+        details.archive-section { margin-top: 8px; background: var(--box-bg); border-radius: 8px; border: 1px solid var(--border-color); overflow: hidden; }
+        details.archive-section summary { padding: 10px 14px; cursor: pointer; color: var(--text-sub); font-size: 0.92rem; font-weight: bold; outline: none; list-style: none; display: flex; align-items: center; gap: 8px; transition: 0.2s; }
+        details.archive-section summary::-webkit-details-marker { display: none; }
+        details.archive-section summary:hover { background: var(--hover-bg); color: var(--text-main); }
+        .archive-content { padding: 0 14px 12px 14px; max-height: 200px; overflow-y: auto; }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-thumb { background: var(--border-color-strong); border-radius: 10px; }
+
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--modal-overlay); z-index: 9999; justify-content: center; align-items: center; }
+        .modal-content { background: var(--card-bg); width: 460px; max-width: 92vw; padding: 24px; border-radius: 12px; border: 2px solid var(--accent-main); display: flex; flex-direction: column; gap: 12px; box-shadow: 0 10px 30px var(--modal-shadow); box-sizing: border-box; }
+        .modal-content textarea { width: 100%; height: 140px; background: var(--input-bg); color: var(--text-main); padding: 12px; border-radius: 6px; border: 1px solid var(--input-border); font-size: 0.98rem; line-height: 1.5; resize: none; outline: none; box-sizing: border-box; }
+        .modal-content textarea:focus { border-color: var(--accent-main); }
+
+        input[type="text"]:not(.edit-input):not(.checklist-input), input[type="date"] { background: var(--input-bg); color: var(--text-main); border: 1px solid var(--input-border); outline: none; }
+        input[type="text"]:not(.edit-input):not(.checklist-input):focus, input[type="date"]:focus { border-color: var(--accent-main); }
+        input[type="date"] { color-scheme: var(--color-scheme); }
+        input[type="date"]::-webkit-calendar-picker-indicator { cursor: pointer; opacity: 1; }
+        input[type="file"]::file-selector-button { background: var(--input-bg); color: var(--accent-sub); border: 1px solid var(--accent-sub); border-radius: 4px; padding: 4px 8px; cursor: pointer; transition: 0.2s; font-weight: bold; font-size: 0.84rem; margin-right: 8px; }
+        input[type="file"]::file-selector-button:hover { background: var(--accent-sub); color: var(--btn-text); }
+
+        .badge-link { flex-shrink: 0; color: #4FC3F7; border: 1px solid rgba(79, 195, 247, 0.5); background: rgba(79, 195, 247, 0.15); border-radius: 5px; padding: 2px 6px; font-size: 0.74rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
+        .badge-file { flex-shrink: 0; color: #81C784; border: 1px solid rgba(129, 199, 132, 0.5); background: rgba(129, 199, 132, 0.15); border-radius: 5px; padding: 2px 6px; font-size: 0.74rem; font-weight: 800; display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
+
+        #toast { position: fixed; bottom: -60px; left: 50%; transform: translateX(-50%); background: var(--accent-main); color: var(--btn-text); padding: 12px 24px; border-radius: 30px; font-weight: bold; font-size: 0.92rem; box-shadow: 0 5px 15px rgba(0,0,0,0.3); z-index: 10000; transition: bottom 0.35s cubic-bezier(0.68, -0.55, 0.265, 1.55); pointer-events: none; max-width: 85vw; text-align: center; }
+        #toast.show { bottom: 28px; }
+        #toast.error { background: var(--accent-red); color: #fff; }
+
+        @media (max-width: 900px) {
+            body { padding: 10px; height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+            .mobile-header { display: flex; }
+            .main-wrapper { flex-direction: column; height: calc(100vh - 66px); min-height: auto; overflow-y: auto; padding-bottom: 20px; }
+
+            .sidebar { position: fixed; top: 0; left: -270px; width: 230px; height: 100vh; border-radius: 0; z-index: 999; transition: left 0.3s ease; box-shadow: none; border: none; border-right: 1px solid var(--border-color); box-sizing: border-box; }
+            .sidebar.open { left: 0; box-shadow: 4px 0 15px rgba(0,0,0,0.5); }
+            .sidebar-backdrop.open { display: block; }
+
+            .dashboard-container { display: flex; flex-direction: column; gap: 15px; }
+            .card { padding: 15px; height: auto !important; min-height: 240px; overflow: visible; }
+
+            .card-1 { order: 1; }
+            .card-3 { order: 2; }
+            .card-2 { order: 3; }
+            .card-4 { order: 4; }
+
+            .memo-container { flex-direction: column; height: auto; }
+            .post-it { min-height: 210px; }
+
+            #noticeBoard, #activeDdayList { max-height: 360px; overflow-y: auto; }
+            .time-display { font-size: 2.7rem; margin: 8px 0; }
+
+            .dday-edit-row { flex-wrap: wrap; }
+            .dday-edit-row > input { width: 100% !important; margin-bottom: 4px; box-sizing: border-box; }
+
+            .d-day-box { font-size: 0.94rem; padding: 12px; }
+            .d-day-row { flex-direction: column; align-items: flex-start !important; gap: 6px; }
+            .d-day-actions { margin-top: 4px; width: 100%; justify-content: flex-end; }
+        }
+    </style>
+</head>
+<body>
+    <div id="toast">알림 메시지</div>
+
+    <div class="sidebar-backdrop" id="sidebarBackdrop" onclick="toggleSidebar()"></div>
+
+    <!-- 전달사항 수정 모달 -->
+    <div id="editModal" class="modal-overlay" onclick="if(event.target===this) closeEditModal()">
+        <div class="modal-content">
+            <h3 style="color:var(--accent-main); margin:0; display:flex; align-items:center; gap:8px; font-size: 1.05rem;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                전달사항 수정
+            </h3>
+            <textarea id="editModalInput"></textarea>
+            <div style="display:flex; justify-content:flex-end; gap:8px;">
+                <button onclick="closeEditModal()" style="padding:7px 14px; background:var(--cancel-btn-bg); color:var(--cancel-btn-text); border:none; border-radius:6px; cursor:pointer; font-weight:bold; font-size:0.9rem;">취소</button>
+                <button id="saveNoticeEditBtn" onclick="saveEdit()" style="padding:7px 14px; background:var(--accent-main); color:var(--btn-text); border:none; border-radius:6px; cursor:pointer; font-weight:bold; font-size:0.9rem;">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- D-Day 추가/수정 모달 -->
+    <div id="ddayModal" class="modal-overlay" onclick="if(event.target===this) closeDdayModal()">
+        <div class="modal-content" style="border-color: var(--accent-sub);">
+            <h3 style="color:var(--accent-sub); margin:0; display:flex; align-items:center; gap:8px; justify-content:space-between; font-size: 1.05rem;">
+                <div style="display:flex; align-items:center; gap:8px;" id="ddayModalTitle">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                    <span>D-Day 설정</span>
+                </div>
+                <label style="white-space:nowrap; flex-shrink:0; font-size:0.85rem; color:var(--accent-sub); display:flex; align-items:center; gap:4px; cursor:pointer; background:var(--period-bg); padding:4px 8px; border-radius:6px; border:1px solid var(--period-border);">
+                    <input type="checkbox" id="modalDdayNeedsCheck" style="margin:0;"> 반별확인
+                </label>
+            </h3>
+            <div class="dday-edit-row" style="display:flex; gap:8px;">
+                <input type="text" id="modalDdayName" placeholder="일정명" style="flex-grow:1; border-radius:6px; padding:10px; font-size:0.9rem; outline:none;">
+                <input type="date" id="modalDdayDate" style="border-radius:6px; padding:10px; font-size:0.9rem; outline:none; text-align:center;">
+            </div>
+            <div class="dday-edit-row" style="display:flex; gap:8px; align-items:center;">
+                <input type="text" id="modalDdayLink" placeholder="공유 링크 (선택, 예: naver.com)" style="flex-grow:1; width:50%; border-radius:6px; padding:10px; font-size:0.9rem; outline:none; box-sizing:border-box;">
+                <input type="file" id="modalDdayFile" style="flex-grow:1; width:50%; background:var(--input-bg); color:var(--text-main); border:1px solid var(--input-border); border-radius:6px; padding:7px; font-size:0.84rem; box-sizing:border-box;">
+            </div>
+            <span style="font-size:0.75rem; color:var(--text-sub); display:block; margin-top:-4px;" id="ddayFileHint">* 새로운 파일을 첨부하면 기존 파일을 덮어씁니다. (최대 5MB)</span>
+
+            <div style="display:flex; justify-content:flex-end; gap:8px; margin-top:2px;">
+                <button onclick="closeDdayModal()" style="padding:7px 14px; background:var(--cancel-btn-bg); color:var(--cancel-btn-text); border:none; border-radius:6px; cursor:pointer; font-weight:bold; font-size:0.9rem;">취소</button>
+                <button id="saveDdayBtn" onclick="processDdaySave()" style="padding:7px 14px; background:var(--accent-sub); color:var(--btn-text); border:none; border-radius:6px; cursor:pointer; font-weight:bold; font-size:0.9rem;">저장</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 모바일 헤더 -->
+    <div class="mobile-header">
+        <button class="hamburger-btn" onclick="toggleSidebar()" aria-label="메뉴 열기">☰</button>
+        <div class="mobile-header-title" id="mobilePageTitle">성지여고 학년부 대시보드</div>
+        <div style="width: 30px;"></div>
+    </div>
+
+    <div class="main-wrapper">
+        <!-- 사이드바 -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header-wrap">
+                <div class="sidebar-title">⭐ 바로가기</div>
+                <button id="themeToggleBtn" class="theme-toggle-btn" onclick="toggleThemeMode()" title="테마 변경">
+                    <span id="themeText">다크 테마</span> <span id="themeIcon">🌙</span>
+                </button>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="naverSearchInput" class="search-input" placeholder="네이버 검색..." onkeydown="handleNaverSearchKey(event)">
+                <button class="search-btn" onclick="searchNaver()" aria-label="네이버 검색">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+            <div class="menu-divider"></div>
+
+            <!-- config 기반 동적 사이드바 렌더링 영역 -->
+            <div id="sidebarLinks"></div>
+        </aside>
+
+        <!-- 4카드 대시보드 -->
+        <main class="dashboard-container">
+            <!-- 카드 1: 시간 · 날씨 · 급식 -->
+            <section class="card card-1">
+                <div class="card-header">
+                    <span>🕒 시간 · 날씨 · 급식</span>
+                    <div class="card-header-actions">
+                        <span class="mode-badge" id="testModeBadge" title="config.js에 Apps Script URL을 입력하면 구글 시트와 연동됩니다">🧪 테스트 모드</span>
+                        <span class="grade-badge" id="headerGradeBadge">성지여고 3학년부</span>
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; justify-content: center; flex-grow: 1;">
+                    <div class="date-display" id="currentDate">0000년 00월 00일 (요일)</div>
+                    <div class="time-display" id="currentTime">00:00:00</div>
+                    <div class="weather-display" id="weatherInfo">☁️ 날씨 정보 로딩중...</div>
+                    <div class="lunch-box">
+                        <div class="lunch-header">
+                            <div class="lunch-title" id="mealBoxTitle">🍽️ 성지여자고등학교 오늘의 급식</div>
+                            <div class="meal-toggle">
+                                <button type="button" class="meal-btn" id="mealBtnLunch" onclick="selectMealType('lunch', true)">중식</button>
+                                <button type="button" class="meal-btn" id="mealBtnDinner" onclick="selectMealType('dinner', true)">석식</button>
+                            </div>
+                        </div>
+                        <div id="lunchMenu" class="lunch-menu">급식 정보 로딩중...</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 카드 4: 포스트잇 메모장 -->
+            <section class="card card-4" style="padding: 15px;">
+                <div class="memo-container">
+                    <div class="post-it pink">
+                        <div class="post-it-title">✅ 체크리스트 <span style="font-size:0.74rem; color:rgba(0,0,0,0.5); font-weight:normal;">(브라우저 저장)</span></div>
+                        <div class="checklist-input-wrap">
+                            <input type="text" class="checklist-input" id="newChecklistInput" placeholder="할 일 입력 (Enter)" onkeydown="handleChecklistAddKey(event)">
+                            <button type="button" onclick="addChecklistItem()">추가</button>
+                        </div>
+                        <div id="checklistItems" class="checklist-items"></div>
+                    </div>
+
+                    <div class="post-it yellow">
+                        <div class="post-it-title">📝 자유 메모 <span style="font-size:0.74rem; color:rgba(0,0,0,0.5); font-weight:normal;">(브라우저 저장)</span></div>
+                        <textarea id="privateMemo" placeholder="자유롭게 메모하세요..."></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 카드 3: 전달사항 -->
+            <section class="card card-3">
+                <div class="card-header">
+                    <span id="noticeTitleText">📢 3학년부 전달사항</span>
+                    <div class="card-header-actions">
+                        <input type="text" id="noticeSearch" class="filter-input" placeholder="🔍 검색..." oninput="filterNotices()">
+                        <button type="button" onclick="fetchNotices()" class="refresh-btn" title="새로고침" aria-label="전달사항 새로고침">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="23 4 23 10 17 10"></polyline>
+                                <polyline points="1 20 1 14 7 14"></polyline>
+                                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                <div id="noticeBoard"></div>
+                <div style="display:flex; gap:8px; margin-top:8px;">
+                    <textarea id="noticeInput" placeholder="새로운 전달사항 (Enter: 전송 / Shift+Enter: 줄바꿈)" style="flex-grow:1; background:var(--input-bg); color:var(--text-main); border:1px solid var(--input-border); border-radius:6px; padding:10px; font-size:0.94rem; box-sizing:border-box; resize:none; height:54px;" onkeydown="checkEnter(event)"></textarea>
+                    <button type="button" id="postNoticeBtn" onclick="postNotice()" style="background:var(--accent-main); color:var(--btn-text); border:none; border-radius:6px; padding:0 16px; cursor:pointer; font-weight:bold; font-size:0.94rem; flex-shrink:0;">등록</button>
+                </div>
+            </section>
+
+            <!-- 카드 2: 주요 업무 D-Day -->
+            <section class="card card-2">
+                <div class="card-header" style="color: var(--accent-sub);">
+                    <span id="ddayTitleText">🏫 3학년부 주요 업무 D-Day</span>
+                    <div class="card-header-actions">
+                        <input type="text" id="ddaySearch" class="filter-input" placeholder="🔍 검색..." oninput="filterDdays()">
+                        <button type="button" class="primary-btn" onclick="openDdayModal('add')">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+                            추가
+                        </button>
+                    </div>
+                </div>
+                <div class="period-notifier" id="periodInfo">일과 시간 로딩 중...</div>
+
+                <div id="ddayList" style="display: flex; flex-direction: column; flex-grow: 1; min-height: 0;">
+                    <div id="activeDdayList" style="overflow-y: auto; flex-grow: 1; min-height: 0; padding-right: 5px;"></div>
+                    <div id="archivedDdayContainer" style="flex-shrink: 0;"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // =========================================
+        // 0. 전역 상태 & 스토리지 키
+        // =========================================
+        const STORAGE_KEYS = {
+            THEME: 'sj_dashboard_theme',
+            MEMO: 'sj_dashboard_private_memo',
+            CHECKLIST: 'sj_dashboard_checklist',
+            CONFIG_CACHE: 'sj_dashboard_config_cache',
+            NEIS_CODE: 'sj_neis_school_code',
+            LOCAL_NOTICES: 'sj_local_notices',
+            LOCAL_DDAYS: 'sj_local_ddays'
+        };
+
+        const API_URL = (window.DASHBOARD_ENV && window.DASHBOARD_ENV.APPS_SCRIPT_URL || '').trim();
+        const IS_LOCAL_MODE = !API_URL;
+
+        let appConfig = mergeConfig(window.DEFAULT_CONFIG, safeJsonParse(localStorage.getItem(STORAGE_KEYS.CONFIG_CACHE), null));
+        let noticeMap = new Map();
+        let ddayMap = new Map();
+        let isPostingNotice = false;
+        let isSavingEdit = false;
+
+        // 급식 상태
+        let mealData = { lunch: null, dinner: null, loaded: false, error: false };
+        let selectedMealType = getAutoMealType();
+        let userOverrodeMealDate = null;
+        let lastDateKey = getTodayString();
+
+        // SVG 아이콘
+        const SVG_EDIT = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>`;
+        const SVG_DELETE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>`;
+        const SVG_ARCHIVE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="21 8 21 21 3 21 3 8"></polyline><rect x="1" y="3" width="22" height="5"></rect><line x1="10" y1="12" x2="14" y2="12"></line></svg>`;
+        const SVG_RESTORE = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8v13H3V8"></path><rect x="1" y="3" width="22" height="5"></rect><polyline points="8 15 12 11 16 15"></polyline><line x1="12" y1="11" x2="12" y2="20"></line></svg>`;
+
+        // =========================================
+        // 1. 공통 유틸리티 (XSS 방어, 날짜, URL, API)
+        // =========================================
+        function safeJsonParse(str, fallback) {
+            if (!str) return fallback;
+            try { return JSON.parse(str); } catch (e) { return fallback; }
+        }
+
+        function escapeHtml(str) {
+            return String(str ?? '')
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#39;');
+        }
+
+        function normalizeUrl(url) {
+            const trimmed = String(url ?? '').trim();
+            if (!trimmed) return '';
+            if (/^https?:\/\//i.test(trimmed)) return trimmed;
+            if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed)) return ''; // javascript: 등 차단
+            return 'https://' + trimmed;
+        }
+
+        function getTodayString() {
+            const today = new Date();
+            return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`;
+        }
+
+        function parseLocalDate(dateStr) {
+            const s = String(dateStr ?? '').trim();
+            const match = s.match(/^(\d{4})-(\d{2})-(\d{2})/);
+            if (match) return new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]));
+            const d = new Date(s);
+            if (isNaN(d.getTime())) return null;
+            d.setHours(0, 0, 0, 0);
+            return d;
+        }
+
+        function formatShortDate(dateObj) {
+            if (!dateObj) return '';
+            return `${String(dateObj.getMonth() + 1).padStart(2, '0')}-${String(dateObj.getDate()).padStart(2, '0')}`;
+        }
+
+        function mergeConfig(base, override) {
+            const merged = JSON.parse(JSON.stringify(base || {}));
+            if (!override || typeof override !== 'object') return merged;
+            for (const key of Object.keys(override)) {
+                if (key === 'schedule' && override.schedule && typeof override.schedule === 'object') {
+                    merged.schedule = Object.assign({}, merged.schedule, override.schedule);
+                    if (override.schedule.dayOverrides) {
+                        merged.schedule.dayOverrides = Object.assign({}, merged.schedule.dayOverrides, override.schedule.dayOverrides);
+                    }
+                } else if (override[key] !== undefined && override[key] !== null) {
+                    merged[key] = override[key];
+                }
+            }
+            return merged;
+        }
+
+        let toastTimer = null;
+        function showToast(message, isError = false) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.toggle('error', isError);
+            toast.classList.add('show');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // GAS v2 통신 함수 (text/plain으로 CORS preflight 회피하여 JSON 응답 직접 수신)
+        async function apiGet(params = {}) {
+            const url = new URL(API_URL);
+            Object.entries(params).forEach(([k, v]) => url.searchParams.set(k, v));
+            url.searchParams.set('t', String(Date.now()));
+            const res = await fetch(url.toString(), { method: 'GET', redirect: 'follow' });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await res.json();
+            if (data && data.ok === false) throw new Error(data.error || '서버 오류');
+            return data;
+        }
+
+        async function apiPost(payload) {
+            const res = await fetch(API_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                redirect: 'follow',
+                body: JSON.stringify(payload)
+            });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            const data = await res.json();
+            if (data && data.ok === false) throw new Error(data.error || '요청 처리 실패');
+            return data;
+        }
+
+        // =========================================
+        // 2. UI / 테마 / 사이드바 / 설정 반영
+        // =========================================
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+            document.getElementById('sidebarBackdrop').classList.toggle('open');
+        }
+
+        const themes = ['dark', 'blossom', 'sky', 'modern', 'forest'];
+        const themeIcons = { dark: '🌙', blossom: '🌸', sky: '☁️', modern: '💻', forest: '🌿' };
+        const themeNames = { dark: '다크', blossom: '벚꽃', sky: '스카이', modern: '모던', forest: '자연' };
+
+        function applyTheme(themeName) {
+            const valid = themes.includes(themeName) ? themeName : 'dark';
+            document.documentElement.setAttribute('data-theme', valid);
+            localStorage.setItem(STORAGE_KEYS.THEME, valid);
+            document.getElementById('themeIcon').textContent = themeIcons[valid];
+            document.getElementById('themeText').textContent = themeNames[valid] + ' 테마';
+        }
+
+        function toggleThemeMode() {
+            const current = document.documentElement.getAttribute('data-theme') || 'dark';
+            const next = themes[(themes.indexOf(current) + 1) % themes.length];
+            applyTheme(next);
+        }
+
+        function applyConfigToUI() {
+            const shortSchool = (appConfig.schoolName || '성지여자고등학교').replace('여자고등학교', '여고');
+            const fullTitle = `${shortSchool} ${appConfig.gradeName} 대시보드`;
+
+            document.title = fullTitle;
+            document.getElementById('pageTitle').textContent = fullTitle;
+            document.getElementById('mobilePageTitle').textContent = fullTitle;
+            document.getElementById('headerGradeBadge').textContent = `${shortSchool} ${appConfig.gradeName}`;
+            document.getElementById('noticeTitleText').textContent = `📢 ${appConfig.gradeName} 전달사항`;
+            document.getElementById('ddayTitleText').textContent = `🏫 ${appConfig.gradeName} 주요 업무 D-Day`;
+            document.getElementById('mealBoxTitle').textContent = `🍽️ ${appConfig.schoolName} 오늘의 급식`;
+
+            renderSidebarShortcuts();
+            updateTime();
+        }
+
+        function renderSidebarShortcuts() {
+            const container = document.getElementById('sidebarLinks');
+            container.innerHTML = '';
+            const items = Array.isArray(appConfig.shortcuts) ? appConfig.shortcuts : [];
+
+            let prevGroup = null;
+            items.forEach(item => {
+                const grp = Number(item.group) || 1;
+                if (prevGroup !== null && prevGroup !== grp) {
+                    const div = document.createElement('div');
+                    div.className = 'menu-divider';
+                    container.appendChild(div);
+                }
+                prevGroup = grp;
+
+                const safeHref = normalizeUrl(item.url);
+                const a = document.createElement('a');
+                a.className = `shortcut-btn group-${Math.min(4, Math.max(1, grp))}`;
+                a.href = safeHref || '#';
+                if (safeHref) {
+                    a.target = '_blank';
+                    a.rel = 'noopener noreferrer';
+                } else {
+                    a.onclick = (e) => { e.preventDefault(); showToast('유효한 링크가 설정되지 않았습니다.', true); };
+                }
+
+                const iconSpan = document.createElement('span');
+                iconSpan.className = 'shortcut-icon';
+                iconSpan.textContent = item.icon || '🔗';
+
+                const labelSpan = document.createElement('span');
+                labelSpan.className = 'shortcut-label';
+                labelSpan.textContent = item.title || '바로가기';
+                labelSpan.title = item.title || '';
+
+                a.appendChild(iconSpan);
+                a.appendChild(labelSpan);
+                container.appendChild(a);
+            });
+        }
+
+        function handleNaverSearchKey(e) {
+            if (e.isComposing || e.keyCode === 229) return;
+            if (e.key === 'Enter') searchNaver();
+        }
+
+        function searchNaver() {
+            const query = document.getElementById('naverSearchInput').value.trim();
+            if (query) window.open('https://search.naver.com/search.naver?query=' + encodeURIComponent(query), '_blank', 'noopener,noreferrer');
+        }
+
+        async function loadRemoteConfig() {
+            if (IS_LOCAL_MODE) {
+                const cached = safeJsonParse(localStorage.getItem(STORAGE_KEYS.CONFIG_CACHE), null);
+                appConfig = mergeConfig(window.DEFAULT_CONFIG, cached);
+                applyConfigToUI();
+                return;
+            }
+            try {
+                const res = await apiGet({ type: 'config' });
+                if (res && res.config && Object.keys(res.config).length > 0) {
+                    appConfig = mergeConfig(window.DEFAULT_CONFIG, res.config);
+                    localStorage.setItem(STORAGE_KEYS.CONFIG_CACHE, JSON.stringify(res.config));
+                    applyConfigToUI();
+                    renderDdaysFromMap(); // 반 수 변경 시 반영
+                }
+            } catch (e) {
+                console.warn('원격 설정 로딩 실패(캐시/기본값 사용):', e);
+            }
+        }
+
+        // =========================================
+        // 3. 시계 & 동적 일과표 + 자정/14시 자동 갱신
+        // =========================================
+        function timeToMinutes(hhmm) {
+            const m = String(hhmm || '').match(/^(\d{1,2}):(\d{2})$/);
+            if (!m) return -1;
+            return Number(m[1]) * 60 + Number(m[2]);
+        }
+
+        function getTodayScheduleSlots(dayOfWeek) {
+            const sched = appConfig.schedule || window.DEFAULT_CONFIG.schedule;
+            const override = sched.dayOverrides && sched.dayOverrides[String(dayOfWeek)];
+            if (Array.isArray(override) && override.length > 0) return override;
+            return Array.isArray(sched.defaultWeekday) ? sched.defaultWeekday : [];
+        }
+
+        function formatPeriodHtml(label, timeStr) {
+            return `${escapeHtml(label)} <span style="font-size: 0.92em; font-weight: 500; margin-left: 6px; color: var(--text-sub);">(${escapeHtml(timeStr)})</span>`;
+        }
+
+        function updateTime() {
+            const now = new Date();
+            const days = ['일', '월', '화', '수', '목', '금', '토'];
+            const dateStr = `${now.getFullYear()}년 ${String(now.getMonth() + 1).padStart(2, '0')}월 ${String(now.getDate()).padStart(2, '0')}일 (${days[now.getDay()]})`;
+            document.getElementById('currentDate').textContent = dateStr;
+
+            const h = String(now.getHours()).padStart(2, '0');
+            const m = String(now.getMinutes()).padStart(2, '0');
+            const s = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('currentTime').textContent = `${h}:${m}:${s}`;
+
+            // 자정 경과 감지 -> 날씨·급식·D-Day·전달사항 자동 갱신
+            const todayKey = getTodayString();
+            if (todayKey !== lastDateKey) {
+                lastDateKey = todayKey;
+                userOverrodeMealDate = null;
+                selectedMealType = getAutoMealType();
+                fetchWeather();
+                fetchMeals();
+                fetchNotices();
+                fetchDdays();
+            }
+
+            // 오후 2시(dinnerSwitchHour) 경과 시 사용자가 수동 전환하지 않았다면 자동 석식 전환
+            const autoType = getAutoMealType();
+            if (userOverrodeMealDate !== todayKey && selectedMealType !== autoType) {
+                selectedMealType = autoType;
+                renderMealUI();
+            }
+
+            // 일과표 계산
+            const day = now.getDay();
+            const sched = appConfig.schedule || window.DEFAULT_CONFIG.schedule;
+            const periodEl = document.getElementById('periodInfo');
+
+            if (day === 0 || day === 6) {
+                periodEl.textContent = sched.weekendMessage || '주말입니다. 편안한 휴일 보내세요! 🌿';
+                return;
+            }
+
+            const slots = getTodayScheduleSlots(day)
+                .map(slot => ({
+                    start: slot.start,
+                    end: slot.end,
+                    label: slot.label,
+                    sMin: timeToMinutes(slot.start),
+                    eMin: timeToMinutes(slot.end)
+                }))
+                .filter(slot => slot.sMin >= 0 && slot.eMin > slot.sMin)
+                .sort((a, b) => a.sMin - b.sMin);
+
+            if (slots.length === 0) {
+                periodEl.textContent = '등록된 일과표가 없습니다.';
+                return;
+            }
+
+            const curMin = now.getHours() * 60 + now.getMinutes();
+            const active = slots.find(slot => curMin >= slot.sMin && curMin < slot.eMin);
+
+            if (active) {
+                periodEl.innerHTML = formatPeriodHtml(active.label, `${active.start}~${active.end}`);
+            } else if (curMin < slots[0].sMin) {
+                periodEl.textContent = sched.beforeMessage || '일과 시작 전입니다.';
+            } else if (curMin >= slots[slots.length - 1].eMin) {
+                periodEl.textContent = sched.afterMessage || '모든 일과가 종료되었습니다. 고생하셨습니다! 👏';
+            } else {
+                periodEl.textContent = '현재 쉬는 시간 / 이동 시간입니다.';
+            }
+        }
+
+        // =========================================
+        // 4. 날씨 & NEIS 급식 (중식/석식 전환)
+        // =========================================
+        async function fetchWeather() {
+            try {
+                const lat = appConfig.weatherLat ?? 35.1980;
+                const lon = appConfig.weatherLon ?? 128.5599;
+                const label = appConfig.weatherLabel || '창원(마산) 날씨';
+                const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=Asia%2FSeoul`);
+                const data = await res.json();
+                const getIcon = (code) => {
+                    if (code === 0) return '☀️';
+                    if (code < 3) return '⛅';
+                    if ((code >= 51 && code <= 67) || (code >= 80 && code <= 82)) return '☔';
+                    if ((code >= 71 && code <= 77) || (code >= 85 && code <= 86)) return '❄️';
+                    return '☁️';
+                };
+                const curTemp = Math.round(data.current.temperature_2m);
+                const curCode = data.current.weather_code;
+                const todayMax = Math.round(data.daily.temperature_2m_max[0]);
+                const todayMin = Math.round(data.daily.temperature_2m_min[0]);
+                const tmrwCode = data.daily.weather_code[1];
+                const tmrwMax = Math.round(data.daily.temperature_2m_max[1]);
+                const tmrwMin = Math.round(data.daily.temperature_2m_min[1]);
+
+                document.getElementById('weatherInfo').innerHTML =
+                    `${escapeHtml(label)}: ${getIcon(curCode)} ${curTemp}°C <span style="font-size:0.8rem; color:var(--text-sub);">(최고 ${todayMax}°/최저 ${todayMin}°)</span> <span style="margin:0 8px; color:var(--text-sub);">|</span> <span style="font-size:0.84rem; color:var(--text-sub);">내일: ${getIcon(tmrwCode)} ${tmrwMax}° / ${tmrwMin}°</span>`;
+            } catch (e) {
+                document.getElementById('weatherInfo').textContent = '날씨 로딩 실패';
+            }
+        }
+
+        function getAutoMealType() {
+            const switchHour = Number(appConfig?.dinnerSwitchHour ?? 14);
+            return new Date().getHours() >= switchHour ? 'dinner' : 'lunch';
+        }
+
+        function selectMealType(type, isManual = false) {
+            selectedMealType = type === 'dinner' ? 'dinner' : 'lunch';
+            if (isManual) userOverrodeMealDate = getTodayString();
+            renderMealUI();
+        }
+
+        function renderMealUI() {
+            document.getElementById('mealBtnLunch').classList.toggle('active', selectedMealType === 'lunch');
+            document.getElementById('mealBtnDinner').classList.toggle('active', selectedMealType === 'dinner');
+
+            const menuEl = document.getElementById('lunchMenu');
+            if (!mealData.loaded) {
+                menuEl.textContent = mealData.error ? '급식 정보 로딩 실패' : '급식 정보 로딩중...';
+                return;
+            }
+            if (selectedMealType === 'lunch') {
+                menuEl.textContent = mealData.lunch || '오늘 중식이 없습니다.';
+            } else {
+                menuEl.textContent = mealData.dinner || '오늘 석식이 없습니다.';
+            }
+        }
+
+        function cleanMealText(raw) {
+            return String(raw || '')
+                .replace(/<br\s*\/?>/gi, ', ')
+                .replace(/\([0-9.\s]+\)/g, '')
+                .replace(/[0-9.*]+/g, '')
+                .replace(/\s+,/g, ',')
+                .replace(/,\s*,/g, ',')
+                .replace(/\s{2,}/g, ' ')
+                .trim();
+        }
+
+        async function getNeisSchoolCode() {
+            const office = appConfig.neisOfficeCode || 'S10';
+            const schoolName = appConfig.schoolName || '성지여자고등학교';
+            const cacheKey = `${office}::${schoolName}`;
+            const cached = safeJsonParse(localStorage.getItem(STORAGE_KEYS.NEIS_CODE), null);
+            if (cached && cached.key === cacheKey && cached.code) return cached.code;
+
+            const schoolRes = await fetch(`https://open.neis.go.kr/hub/schoolInfo?Type=json&ATPT_OFCDC_SC_CODE=${encodeURIComponent(office)}&SCHUL_NM=${encodeURIComponent(schoolName)}`);
+            const schoolData = await schoolRes.json();
+            const rows = schoolData?.schoolInfo?.[1]?.row || [];
+            const matched = rows.find(r => r.SCHUL_NM === schoolName) || rows[0];
+            if (!matched || !matched.SD_SCHUL_CODE) throw new Error('학교코드를 찾을 수 없습니다.');
+
+            localStorage.setItem(STORAGE_KEYS.NEIS_CODE, JSON.stringify({ key: cacheKey, code: matched.SD_SCHUL_CODE }));
+            return matched.SD_SCHUL_CODE;
+        }
+
+        async function fetchMeals() {
+            mealData = { lunch: null, dinner: null, loaded: false, error: false };
+            renderMealUI();
+            try {
+                const office = appConfig.neisOfficeCode || 'S10';
+                const schoolCode = await getNeisSchoolCode();
+                const now = new Date();
+                const today = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`;
+
+                const mealRes = await fetch(`https://open.neis.go.kr/hub/mealServiceDietInfo?Type=json&ATPT_OFCDC_SC_CODE=${encodeURIComponent(office)}&SD_SCHUL_CODE=${encodeURIComponent(schoolCode)}&MLSV_YMD=${today}`);
+                const data = await mealRes.json();
+                const rows = data?.mealServiceDietInfo?.[1]?.row || [];
+
+                rows.forEach(row => {
+                    const code = String(row.MMEAL_SC_CODE || '');
+                    const name = String(row.MMEAL_SC_NM || '');
+                    const cleaned = cleanMealText(row.DDISH_NM);
+                    if (code === '2' || name.includes('중식')) mealData.lunch = cleaned;
+                    else if (code === '3' || name.includes('석식')) mealData.dinner = cleaned;
+                });
+
+                mealData.loaded = true;
+                renderMealUI();
+            } catch (e) {
+                mealData.error = true;
+                renderMealUI();
+            }
+        }
+
+        // =========================================
+        // 5. 포스트잇 체크리스트 & 자유 메모 (XSS·IME 수정)
+        // =========================================
+        let checklistData = safeJsonParse(localStorage.getItem(STORAGE_KEYS.CHECKLIST), []);
+        if (!Array.isArray(checklistData)) checklistData = [];
+        checklistData = checklistData.map(item => ({
+            text: String(item?.text ?? ''),
+            checked: Boolean(item?.checked),
+            isEditing: false // 새로고침 시 편집 모드 고착 방지
+        }));
+
+        function saveChecklistStorage() {
+            const toSave = checklistData.map(({ text, checked }) => ({ text, checked }));
+            localStorage.setItem(STORAGE_KEYS.CHECKLIST, JSON.stringify(toSave));
+        }
+
+        function renderChecklist() {
+            const container = document.getElementById('checklistItems');
+            container.innerHTML = '';
+
+            checklistData.forEach((item, index) => {
+                const row = document.createElement('div');
+                row.className = `checklist-item ${item.checked ? 'checked' : ''}`;
+
+                const cb = document.createElement('input');
+                cb.type = 'checkbox';
+                cb.checked = item.checked;
+
+                const actions = document.createElement('div');
+                actions.className = 'checklist-actions';
+
+                if (item.isEditing) {
+                    cb.disabled = true;
+                    const input = document.createElement('input');
+                    input.type = 'text';
+                    input.className = 'edit-input';
+                    input.id = `editItem-${index}`;
+                    input.value = item.text;
+                    input.addEventListener('keydown', (e) => {
+                        if (e.isComposing || e.keyCode === 229) return;
+                        if (e.key === 'Enter') saveChecklistItem(index);
+                        else if (e.key === 'Escape') cancelEditChecklist(index);
+                    });
+
+                    const saveBtn = document.createElement('button');
+                    saveBtn.type = 'button';
+                    saveBtn.className = 'cl-btn';
+                    saveBtn.title = '저장';
+                    saveBtn.textContent = '💾';
+                    saveBtn.onclick = () => saveChecklistItem(index);
+
+                    const cancelBtn = document.createElement('button');
+                    cancelBtn.type = 'button';
+                    cancelBtn.className = 'cl-btn';
+                    cancelBtn.title = '취소';
+                    cancelBtn.textContent = '❌';
+                    cancelBtn.onclick = () => cancelEditChecklist(index);
+
+                    actions.append(saveBtn, cancelBtn);
+                    row.append(cb, input, actions);
+                } else {
+                    cb.onchange = () => toggleChecklistItem(index);
+
+                    const span = document.createElement('span');
+                    span.className = 'text';
+                    span.textContent = item.text;
+                    span.onclick = () => toggleChecklistItem(index);
+
+                    const editBtn = document.createElement('button');
+                    editBtn.type = 'button';
+                    editBtn.className = 'cl-btn';
+                    editBtn.title = '수정';
+                    editBtn.textContent = '✏️';
+                    editBtn.onclick = () => editChecklistItem(index);
+
+                    const delBtn = document.createElement('button');
+                    delBtn.type = 'button';
+                    delBtn.className = 'cl-btn';
+                    delBtn.title = '삭제';
+                    delBtn.textContent = '🗑️';
+                    delBtn.onclick = () => deleteChecklistItem(index);
+
+                    actions.append(editBtn, delBtn);
+                    row.append(cb, span, actions);
+                }
+                container.appendChild(row);
+            });
+
+            saveChecklistStorage();
+        }
+
+        function handleChecklistAddKey(e) {
+            if (e.isComposing || e.keyCode === 229) return;
+            if (e.key === 'Enter') addChecklistItem();
+        }
+
+        function addChecklistItem() {
+            const input = document.getElementById('newChecklistInput');
+            const val = input.value.trim();
+            if (!val) return;
+            checklistData.push({ text: val, checked: false, isEditing: false });
+            input.value = '';
+            renderChecklist();
+        }
+
+        function toggleChecklistItem(index) {
+            if (!checklistData[index]) return;
+            checklistData[index].checked = !checklistData[index].checked;
+            renderChecklist();
+        }
+
+        function deleteChecklistItem(index) {
+            checklistData.splice(index, 1);
+            renderChecklist();
+        }
+
+        function editChecklistItem(index) {
+            checklistData.forEach((it, idx) => { it.isEditing = (idx === index); });
+            renderChecklist();
+            setTimeout(() => {
+                const el = document.getElementById(`editItem-${index}`);
+                if (el) { el.focus(); el.select(); }
+            }, 30);
+        }
+
+        function saveChecklistItem(index) {
+            const input = document.getElementById(`editItem-${index}`);
+            if (input && input.value.trim() !== '') {
+                checklistData[index].text = input.value.trim();
+            }
+            checklistData[index].isEditing = false;
+            renderChecklist();
+        }
+
+        function cancelEditChecklist(index) {
+            if (checklistData[index]) checklistData[index].isEditing = false;
+            renderChecklist();
+        }
+
+        // =========================================
+        // 6. 로컬 테스트 모드 저장소 헬퍼
+        // =========================================
+        function getLocalNotices() {
+            const list = safeJsonParse(localStorage.getItem(STORAGE_KEYS.LOCAL_NOTICES), null);
+            if (Array.isArray(list)) return list;
+            const seed = [
+                { 전달ID: 'DEMO-N1', 날짜: getTodayString(), 내용: '테스트 모드입니다. 전달사항을 등록·수정·삭제해 보세요!\n(config.js에 Apps Script URL을 입력하면 구글 시트와 연동됩니다.)' }
+            ];
+            localStorage.setItem(STORAGE_KEYS.LOCAL_NOTICES, JSON.stringify(seed));
+            return seed;
+        }
+        function setLocalNotices(list) {
+            localStorage.setItem(STORAGE_KEYS.LOCAL_NOTICES, JSON.stringify(list));
+        }
+
+        function getLocalDdays() {
+            const list = safeJsonParse(localStorage.getItem(STORAGE_KEYS.LOCAL_DDAYS), null);
+            if (Array.isArray(list)) return list;
+            const seed = [
+                { ID: 'DEMO-D1', 일정명: '새 학기 학급 조직 및 시정표 점검', 날짜: getTodayString(), 외부링크: '', 파일링크: '', 반별체크: JSON.stringify(new Array(appConfig.classCount || 8).fill(0)), 보관여부: 'N' }
+            ];
+            localStorage.setItem(STORAGE_KEYS.LOCAL_DDAYS, JSON.stringify(seed));
+            return seed;
+        }
+        function setLocalDdays(list) {
+            localStorage.setItem(STORAGE_KEYS.LOCAL_DDAYS, JSON.stringify(list));
+        }
+
+        // =========================================
+        // 7. 전달사항 (Notices)
+        // =========================================
+        function filterNotices() {
+            const query = document.getElementById('noticeSearch').value.toLowerCase();
+            document.querySelectorAll('.notice-item').forEach(item => {
+                item.style.display = item.textContent.toLowerCase().includes(query) ? '' : 'none';
+            });
+        }
+
+        function renderNotices(list) {
+            const board = document.getElementById('noticeBoard');
+            noticeMap.clear();
+            const today = getTodayString();
+
+            let todayHtml = '<div class="section-title">✨ 오늘의 전달사항</div>';
+            let pastHtml = '<div class="section-divider"></div><div class="section-title">📅 이전 전달사항</div>';
+            let hasToday = false, hasPast = false;
+
+            const safeList = Array.isArray(list) ? [...list].reverse() : [];
+            safeList.forEach(item => {
+                const id = String(item?.전달ID ?? '').trim();
+                const dateStr = String(item?.날짜 ?? '').trim();
+                const rawContent = String(item?.내용 ?? '');
+                if (!id && !rawContent) return;
+
+                noticeMap.set(id, { id, date: dateStr, content: rawContent });
+
+                const isToday = dateStr === today;
+                const safeIdAttr = escapeHtml(id);
+                const safeContentHtml = escapeHtml(rawContent).replace(/\n/g, '<br>');
+
+                const itemHtml = `
+                    <div class="notice-item ${isToday ? 'today' : 'past'}">
+                        <span class="notice-time">${isToday ? '오늘' : escapeHtml(dateStr)}</span>
+                        <div class="notice-text">${safeContentHtml}</div>
+                        <div style="position:absolute; top:11px; right:10px; display:flex; gap:4px;">
+                            <button type="button" class="action-btn edit-btn" onclick="openEditModal('${safeIdAttr}')" title="수정">${SVG_EDIT}</button>
+                            <button type="button" class="action-btn delete-btn" onclick="deleteNotice('${safeIdAttr}')" title="삭제">${SVG_DELETE}</button>
+                        </div>
+                    </div>`;
+
+                if (isToday) { todayHtml += itemHtml; hasToday = true; }
+                else { pastHtml += itemHtml; hasPast = true; }
+            });
+
+            if (!hasToday) {
+                todayHtml += '<div style="text-align:center; padding:10px; color:var(--text-sub); font-size:0.85rem;">오늘 등록된 전달사항이 없습니다.</div>';
+            }
+            if (!hasPast) {
+                pastHtml += '<div style="text-align:center; padding:10px; color:var(--text-sub); font-size:0.85rem;">이전 전달사항이 없습니다.</div>';
+            }
+
+            board.innerHTML = todayHtml + pastHtml;
+            filterNotices();
+        }
+
+        async function fetchNotices() {
+            const board = document.getElementById('noticeBoard');
+            if (IS_LOCAL_MODE) {
+                renderNotices(getLocalNotices());
+                return;
+            }
+            try {
+                const data = await apiGet({ type: 'notice' });
+                renderNotices(Array.isArray(data) ? data : (data.items || []));
+            } catch (e) {
+                board.innerHTML = '<div style="text-align:center; padding:20px; color:var(--accent-red); font-size:0.9rem;">전달사항 로딩 실패 (네트워크·Apps Script 확인)</div>';
+            }
+        }
+
+        function checkEnter(e) {
+            if (e.isComposing || e.keyCode === 229) return;
+            if (e.key === 'Enter' && !e.shiftKey) {
+                e.preventDefault();
+                postNotice();
+            }
+        }
+
+        async function postNotice() {
+            if (isPostingNotice) return;
+            const input = document.getElementById('noticeInput');
+            const btn = document.getElementById('postNoticeBtn');
+            const val = input.value.trim();
+            if (!val) { showToast('내용을 입력해주세요.', true); return; }
+
+            if (IS_LOCAL_MODE) {
+                const list = getLocalNotices();
+                list.push({ 전달ID: 'N-' + Date.now(), 날짜: getTodayString(), 내용: val });
+                setLocalNotices(list);
+                input.value = '';
+                showToast('전달사항이 등록되었습니다. (테스트 모드)');
+                renderNotices(list);
+                return;
+            }
+
+            isPostingNotice = true;
+            btn.disabled = true;
+            btn.textContent = '저장중';
+            try {
+                const res = await apiPost({ action: 'create', type: 'notice', text: val });
+                input.value = '';
+                showToast('전달사항이 등록되었습니다.');
+                if (Array.isArray(res.items)) renderNotices(res.items);
+                else await fetchNotices();
+            } catch (e) {
+                showToast('등록 실패: ' + e.message, true);
+            } finally {
+                isPostingNotice = false;
+                btn.disabled = false;
+                btn.textContent = '등록';
+            }
+        }
+
+        let currentEditId = null;
+        function openEditModal(id) {
+            const item = noticeMap.get(id);
+            if (!item) return;
+            currentEditId = id;
+            document.getElementById('editModalInput').value = item.content;
+            document.getElementById('editModal').style.display = 'flex';
+            setTimeout(() => document.getElementById('editModalInput').focus(), 30);
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+            currentEditId = null;
+        }
+
+        async function saveEdit() {
+            if (isSavingEdit || !currentEditId) return;
+            const val = document.getElementById('editModalInput').value.trim();
+            const btn = document.getElementById('saveNoticeEditBtn');
+            if (!val) { showToast('내용을 입력해주세요.', true); return; }
+
+            if (IS_LOCAL_MODE) {
+                const list = getLocalNotices().map(it => it.전달ID === currentEditId ? { ...it, 내용: val } : it);
+                setLocalNotices(list);
+                closeEditModal();
+                showToast('수정되었습니다. (테스트 모드)');
+                renderNotices(list);
+                return;
+            }
+
+            isSavingEdit = true;
+            btn.disabled = true;
+            btn.textContent = '저장중...';
+            try {
+                const res = await apiPost({ action: 'update', type: 'notice', id: currentEditId, text: val });
+                closeEditModal();
+                showToast('수정되었습니다.');
+                if (Array.isArray(res.items)) renderNotices(res.items);
+                else await fetchNotices();
+            } catch (e) {
+                showToast('수정 실패: ' + e.message, true);
+            } finally {
+                isSavingEdit = false;
+                btn.disabled = false;
+                btn.textContent = '저장';
+            }
+        }
+
+        async function deleteNotice(id) {
+            if (!confirm('이 전달사항을 삭제하시겠습니까?')) return;
+            if (IS_LOCAL_MODE) {
+                const list = getLocalNotices().filter(it => it.전달ID !== id);
+                setLocalNotices(list);
+                showToast('삭제되었습니다.');
+                renderNotices(list);
+                return;
+            }
+            try {
+                const res = await apiPost({ action: 'delete', type: 'notice', id });
+                showToast('삭제되었습니다.');
+                if (Array.isArray(res.items)) renderNotices(res.items);
+                else await fetchNotices();
+            } catch (e) {
+                showToast('삭제 실패: ' + e.message, true);
+            }
+        }
+
+        // =========================================
+        // 8. 주요 업무 D-Day (반별 체크 & 보관함)
+        // =========================================
+        function filterDdays() {
+            const query = document.getElementById('ddaySearch').value.toLowerCase();
+            let archiveHasMatch = false;
+
+            document.querySelectorAll('.d-day-box').forEach(item => {
+                const isMatch = item.textContent.toLowerCase().includes(query);
+                item.style.display = isMatch ? 'flex' : 'none';
+                if (isMatch && item.classList.contains('archived')) archiveHasMatch = true;
+            });
+
+            const archiveSection = document.querySelector('details.archive-section');
+            if (archiveSection) {
+                if (query !== '') {
+                    archiveSection.style.display = archiveHasMatch ? 'block' : 'none';
+                    archiveSection.open = archiveHasMatch;
+                } else {
+                    archiveSection.style.display = 'block';
+                    archiveSection.open = false;
+                }
+            }
+        }
+
+        function renderDdays(list) {
+            ddayMap.clear();
+            const safeList = Array.isArray(list) ? list : [];
+            safeList.forEach(item => {
+                const id = String(item?.ID ?? '').trim();
+                const name = String(item?.일정명 ?? '').trim();
+                const dateStr = String(item?.날짜 ?? '').trim();
+                if (!id || !name || !dateStr) return;
+                ddayMap.set(id, {
+                    id,
+                    name,
+                    date: dateStr,
+                    link: String(item?.외부링크 ?? '').trim(),
+                    fileLink: String(item?.파일링크 ?? '').trim(),
+                    checkStr: String(item?.반별체크 ?? '').trim(),
+                    archived: String(item?.보관여부 ?? '').trim().toUpperCase() === 'Y'
+                });
+            });
+            renderDdaysFromMap();
+        }
+
+        function renderDdaysFromMap() {
+            const activeList = document.getElementById('activeDdayList');
+            const archivedContainer = document.getElementById('archivedDdayContainer');
+            const daysArr = ['일', '월', '화', '수', '목', '금', '토'];
+            const todayDate = parseLocalDate(getTodayString());
+            const classCount = Math.max(1, Math.min(20, Number(appConfig.classCount) || 8));
+
+            const sorted = Array.from(ddayMap.values()).sort((a, b) => {
+                const da = parseLocalDate(a.date);
+                const db = parseLocalDate(b.date);
+                return (da ? da.getTime() : 0) - (db ? db.getTime() : 0);
+            });
+
+            let activeHtml = '';
+            let archivedHtml = '';
+            let archiveCount = 0;
+
+            sorted.forEach(item => {
+                const targetDate = parseLocalDate(item.date);
+                if (!targetDate) return;
+
+                const diff = Math.round((targetDate - todayDate) / (1000 * 60 * 60 * 24));
+                const dText = diff > 0 ? `D-${diff}` : (diff === 0 ? 'D-Day' : `D+${Math.abs(diff)}`);
+                const isTodayClass = diff === 0 ? 'dday-today' : '';
+                const dayStr = daysArr[targetDate.getDay()];
+                const shortDate = formatShortDate(targetDate);
+
+                const safeIdAttr = escapeHtml(item.id);
+                const safeName = escapeHtml(item.name);
+                const safeLinkHref = normalizeUrl(item.link);
+                const safeFileHref = normalizeUrl(item.fileLink);
+
+                const linkBadge = safeLinkHref
+                    ? `<a href="${escapeHtml(safeLinkHref)}" target="_blank" rel="noopener noreferrer" style="margin-right:6px; display:flex; align-items:center; text-decoration:none;" title="링크 바로가기"><span class="badge-link">링크</span></a>`
+                    : '';
+                const fileBadge = safeFileHref
+                    ? `<a href="${escapeHtml(safeFileHref)}" target="_blank" rel="noopener noreferrer" style="margin-right:8px; display:flex; align-items:center; text-decoration:none;" title="첨부파일 다운로드"><span class="badge-file">파일</span></a>`
+                    : '';
+
+                let classCheckHtml = '';
+                if (item.checkStr) {
+                    const checks = safeJsonParse(item.checkStr, null);
+                    if (Array.isArray(checks)) {
+                        let btns = '';
+                        for (let c = 0; c < classCount; c++) {
+                            const isOn = Number(checks[c]) === 1;
+                            btns += `<button type="button" class="class-btn ${isOn ? 'on' : 'off'}" onclick="toggleCheck('${safeIdAttr}', ${c}, this)">${c + 1}</button>`;
+                        }
+                        classCheckHtml = `<div class="class-check-wrap">${btns}</div>`;
+                    }
+                }
+
+                const innerHtml = `
+                    <div class="d-day-row" style="display:flex; justify-content:space-between; align-items:center; width:100%; gap:10px;">
+                        <div style="white-space:nowrap; overflow:hidden; text-overflow:ellipsis; flex-grow:1; min-width:0;" title="${safeName}">
+                            ${safeName} <span style="font-size:0.8rem; color:var(--text-sub);">(${shortDate} ${dayStr})</span>
+                        </div>
+                        <div class="d-day-actions">
+                            ${linkBadge}${fileBadge}
+                            ${!item.archived ? `<span class="accent-text">${dText}</span>` : ''}
+                            <button type="button" class="action-btn archive-btn" onclick="toggleArchive('${safeIdAttr}')" title="${item.archived ? '보관함에서 꺼내기' : '보관함으로 이동'}">${item.archived ? SVG_RESTORE : SVG_ARCHIVE}</button>
+                            ${!item.archived ? `<button type="button" class="action-btn edit-btn" onclick="openDdayModal('edit', '${safeIdAttr}')" title="수정">${SVG_EDIT}</button>` : ''}
+                            <button type="button" class="action-btn delete-btn" onclick="deleteDday('${safeIdAttr}')" title="${item.archived ? '영구 삭제' : '삭제'}">${SVG_DELETE}</button>
+                        </div>
+                    </div>
+                    ${!item.archived ? classCheckHtml : ''}`;
+
+                if (item.archived) {
+                    archiveCount++;
+                    archivedHtml += `<div class="d-day-box archived">${innerHtml}</div>`;
+                } else {
+                    activeHtml += `<div class="d-day-box ${isTodayClass}">${innerHtml}</div>`;
+                }
+            });
+
+            if (!activeHtml) {
+                activeHtml = '<div style="text-align:center; padding:20px; color:var(--text-sub); font-size:0.9rem;">예정된 업무가 없습니다. 🎉</div>';
+            }
+
+            activeList.innerHTML = activeHtml;
+            archivedContainer.innerHTML = archiveCount > 0
+                ? `<details class="archive-section"><summary>🗃️ 완료된 업무 보관함 (${archiveCount}개)</summary><div class="archive-content">${archivedHtml}</div></details>`
+                : '';
+
+            filterDdays();
+        }
+
+        async function fetchDdays() {
+            const activeList = document.getElementById('activeDdayList');
+            if (IS_LOCAL_MODE) {
+                renderDdays(getLocalDdays());
+                return;
+            }
+            try {
+                const data = await apiGet({ type: 'dday' });
+                renderDdays(Array.isArray(data) ? data : (data.items || []));
+            } catch (e) {
+                activeList.innerHTML = '<div style="text-align:center; padding:20px; color:var(--accent-red); font-size:0.9rem;">D-Day 로딩 실패 (네트워크·Apps Script 확인)</div>';
+            }
+        }
+
+        async function toggleCheck(id, classIndex, btn) {
+            const wasOn = btn.classList.contains('on');
+            btn.classList.toggle('on', !wasOn);
+            btn.classList.toggle('off', wasOn);
+
+            const classCount = Math.max(1, Math.min(20, Number(appConfig.classCount) || 8));
+
+            if (IS_LOCAL_MODE) {
+                const list = getLocalDdays().map(it => {
+                    if (it.ID !== id) return it;
+                    const arr = safeJsonParse(it.반별체크, []);
+                    while (arr.length < classCount) arr.push(0);
+                    arr[classIndex] = wasOn ? 0 : 1;
+                    return { ...it, 반별체크: JSON.stringify(arr) };
+                });
+                setLocalDdays(list);
+                const cached = ddayMap.get(id);
+                if (cached) {
+                    const updated = list.find(x => x.ID === id);
+                    if (updated) cached.checkStr = updated.반별체크;
+                }
+                return;
+            }
+
+            try {
+                await apiPost({ action: 'toggleCheck', type: 'dday', id, classIndex, classCount });
+            } catch (e) {
+                // 실패 시 UI 롤백
+                btn.classList.toggle('on', wasOn);
+                btn.classList.toggle('off', !wasOn);
+                showToast('체크 저장 실패: ' + e.message, true);
+            }
+        }
+
+        async function toggleArchive(id) {
+            if (IS_LOCAL_MODE) {
+                const list = getLocalDdays().map(it => it.ID === id ? { ...it, 보관여부: it.보관여부 === 'Y' ? 'N' : 'Y' } : it);
+                setLocalDdays(list);
+                showToast('보관함 상태가 변경되었습니다.');
+                renderDdays(list);
+                return;
+            }
+            try {
+                const res = await apiPost({ action: 'toggleArchive', type: 'dday', id });
+                showToast('보관함 상태가 변경되었습니다.');
+                if (Array.isArray(res.items)) renderDdays(res.items);
+                else await fetchDdays();
+            } catch (e) {
+                showToast('상태 변경 실패: ' + e.message, true);
+            }
+        }
+
+        let ddayModalMode = 'add';
+        let currentDdayEditId = null;
+
+        function openDdayModal(mode, id = null) {
+            ddayModalMode = mode;
+            const titleSpan = document.querySelector('#ddayModalTitle span');
+            const btn = document.getElementById('saveDdayBtn');
+            btn.disabled = false;
+
+            if (mode === 'add') {
+                titleSpan.textContent = '새로운 D-Day 추가';
+                btn.textContent = '추가하기';
+                currentDdayEditId = null;
+                document.getElementById('modalDdayName').value = '';
+                document.getElementById('modalDdayDate').value = getTodayString();
+                document.getElementById('modalDdayLink').value = '';
+                document.getElementById('modalDdayFile').value = '';
+                document.getElementById('modalDdayNeedsCheck').checked = false;
+                document.getElementById('ddayFileHint').style.display = 'none';
+            } else {
+                const item = ddayMap.get(id);
+                if (!item) return;
+                titleSpan.textContent = 'D-Day 수정';
+                btn.textContent = '저장하기';
+                currentDdayEditId = id;
+                document.getElementById('modalDdayName').value = item.name;
+                document.getElementById('modalDdayDate').value = item.date.slice(0, 10);
+                document.getElementById('modalDdayLink').value = item.link || '';
+                document.getElementById('modalDdayFile').value = '';
+                document.getElementById('modalDdayNeedsCheck').checked = Boolean(item.checkStr);
+                document.getElementById('ddayFileHint').style.display = 'block';
+            }
+            document.getElementById('ddayModal').style.display = 'flex';
+            setTimeout(() => document.getElementById('modalDdayName').focus(), 30);
+        }
+
+        function closeDdayModal() {
+            document.getElementById('ddayModal').style.display = 'none';
+            currentDdayEditId = null;
+        }
+
+        function processDdaySave() {
+            const name = document.getElementById('modalDdayName').value.trim();
+            const date = document.getElementById('modalDdayDate').value;
+            const rawLink = document.getElementById('modalDdayLink').value.trim();
+            const link = rawLink ? normalizeUrl(rawLink) : '';
+            const fileInput = document.getElementById('modalDdayFile');
+            const needsCheck = document.getElementById('modalDdayNeedsCheck').checked;
+            const btn = document.getElementById('saveDdayBtn');
+            const defaultLabel = ddayModalMode === 'add' ? '추가하기' : '저장하기';
+
+            if (!name || !date) { showToast('일정명과 날짜를 입력해주세요.', true); return; }
+            if (rawLink && !link) { showToast('올바른 링크 형식이 아닙니다.', true); return; }
+
+            if (IS_LOCAL_MODE) {
+                if (fileInput.files.length > 0) {
+                    showToast('파일 첨부는 구글 시트(Apps Script) 연동 후 사용할 수 있습니다.', true);
+                }
+                const classCount = Math.max(1, Math.min(20, Number(appConfig.classCount) || 8));
+                let list = getLocalDdays();
+                if (ddayModalMode === 'add') {
+                    list.push({
+                        ID: 'D-' + Date.now(),
+                        일정명: name,
+                        날짜: date,
+                        외부링크: link,
+                        파일링크: '',
+                        반별체크: needsCheck ? JSON.stringify(new Array(classCount).fill(0)) : '',
+                        보관여부: 'N'
+                    });
+                } else {
+                    list = list.map(it => {
+                        if (it.ID !== currentDdayEditId) return it;
+                        let checkStr = it.반별체크 || '';
+                        if (needsCheck && !checkStr) checkStr = JSON.stringify(new Array(classCount).fill(0));
+                        if (!needsCheck) checkStr = '';
+                        return { ...it, 일정명: name, 날짜: date, 외부링크: link, 반별체크: checkStr };
+                    });
+                }
+                setLocalDdays(list);
+                closeDdayModal();
+                showToast(ddayModalMode === 'add' ? '일정이 추가되었습니다. (테스트 모드)' : '일정이 수정되었습니다. (테스트 모드)');
+                renderDdays(list);
+                return;
+            }
+
+            btn.textContent = '처리중...';
+            btn.disabled = true;
+
+            const payload = {
+                action: ddayModalMode === 'add' ? 'create' : 'update',
+                type: 'dday',
+                name,
+                date,
+                link,
+                needsCheck,
+                classCount: Math.max(1, Math.min(20, Number(appConfig.classCount) || 8))
+            };
+            if (ddayModalMode === 'edit') payload.id = currentDdayEditId;
+
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                if (file.size > 5 * 1024 * 1024) {
+                    showToast('첨부파일은 5MB 이하만 가능합니다.', true);
+                    btn.textContent = defaultLabel;
+                    btn.disabled = false;
+                    return;
+                }
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    payload.fileData = e.target.result.split(',')[1];
+                    payload.fileName = file.name;
+                    payload.mimeType = file.type;
+                    sendDdayRequest(payload, btn, defaultLabel);
+                };
+                reader.onerror = () => {
+                    showToast('파일을 읽는 중 오류가 발생했습니다.', true);
+                    btn.textContent = defaultLabel;
+                    btn.disabled = false;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                sendDdayRequest(payload, btn, defaultLabel);
+            }
+        }
+
+        async function sendDdayRequest(payload, btn, defaultLabel) {
+            try {
+                const res = await apiPost(payload);
+                closeDdayModal();
+                showToast(ddayModalMode === 'add' ? '일정이 추가되었습니다.' : '일정이 수정되었습니다.');
+                if (Array.isArray(res.items)) renderDdays(res.items);
+                else await fetchDdays();
+            } catch (e) {
+                showToast('저장 실패: ' + e.message, true);
+            } finally {
+                btn.disabled = false;
+                btn.textContent = defaultLabel;
+            }
+        }
+
+        async function deleteDday(id) {
+            if (!confirm('해당 D-Day를 영구 삭제하시겠습니까?')) return;
+            if (IS_LOCAL_MODE) {
+                const list = getLocalDdays().filter(it => it.ID !== id);
+                setLocalDdays(list);
+                showToast('삭제되었습니다.');
+                renderDdays(list);
+                return;
+            }
+            try {
+                const res = await apiPost({ action: 'delete', type: 'dday', id });
+                showToast('삭제되었습니다.');
+                if (Array.isArray(res.items)) renderDdays(res.items);
+                else await fetchDdays();
+            } catch (e) {
+                showToast('삭제 실패: ' + e.message, true);
+            }
+        }
+
+        // =========================================
+        // 9. 초기화 실행
+        // =========================================
+        document.addEventListener('DOMContentLoaded', async () => {
+            applyTheme(localStorage.getItem(STORAGE_KEYS.THEME) || 'dark');
+
+            if (IS_LOCAL_MODE) {
+                document.getElementById('testModeBadge').classList.add('visible');
+            }
+
+            const savedMemo = localStorage.getItem(STORAGE_KEYS.MEMO);
+            if (savedMemo !== null) document.getElementById('privateMemo').value = savedMemo;
+            document.getElementById('privateMemo').addEventListener('input', (e) => {
+                localStorage.setItem(STORAGE_KEYS.MEMO, e.target.value);
+            });
+
+            renderChecklist();
+            applyConfigToUI();
+            selectMealType(getAutoMealType(), false);
+
+            // 모달 ESC 닫기
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeEditModal();
+                    closeDdayModal();
+                }
+            });
+
+            // 초기 데이터 로드
+            await loadRemoteConfig();
+            fetchWeather();
+            fetchMeals();
+            fetchNotices();
+            fetchDdays();
+
+            // 주기적 갱신
+            setInterval(updateTime, 1000);
+            setInterval(() => {
+                fetchNotices();
+                fetchDdays();
+                loadRemoteConfig();
+            }, 5 * 60 * 1000);
+            setInterval(fetchWeather, 30 * 60 * 1000);
+        });
+    </script>
+</body>
+</html>
